@@ -39,11 +39,6 @@
                                     class="is-checked relative py-10px px-5 md:py-15px lg:px-10 font-bold uppercase text-sm lg:text-base text-blackColor bg-whiteColor shadow-overview-button dark:bg-whiteColor-dark dark:text-blackColor-dark before:w-0 before:h-0.5 before:absolute before:-bottom-0.5 lg:before:bottom-0 before:left-0 before:bg-primaryColor hover:before:w-full before:transition-all before:duration-300 whitespace-nowrap">
                                     PASSWORD
                                 </button>
-
-                                <button
-                                    class="is-checked relative py-10px px-5 md:py-15px lg:px-10 font-bold uppercase text-sm lg:text-base text-blackColor bg-whiteColor shadow-overview-button dark:bg-whiteColor-dark dark:text-blackColor-dark before:w-0 before:h-0.5 before:absolute before:-bottom-0.5 lg:before:bottom-0 before:left-0 before:bg-primaryColor hover:before:w-full before:transition-all before:duration-300 whitespace-nowrap">
-                                    SOCIAL ICON
-                                </button>
                             </div>
                             <div class="tab-contents">
                                 <div class="transition-all duration-300">
@@ -55,6 +50,8 @@
                                             <div>
                                                 <label class="mb-3 block font-semibold">First Name</label>
                                                 <input
+                                                    name="firstName"
+                                                    value="<?php echo $_SESSION['user']['firstName'] ?>"
                                                     type="text"
                                                     placeholder="John"
                                                     class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no">
@@ -62,6 +59,8 @@
                                             <div>
                                                 <label class="mb-3 block font-semibold">Last Name</label>
                                                 <input
+                                                    name="lastName"
+                                                    value="<?php echo $_SESSION['user']['lastName'] ?>"
                                                     type="text"
                                                     placeholder="Due"
                                                     class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no">
@@ -69,42 +68,25 @@
                                             <div>
                                                 <label class="mb-3 block font-semibold">User Name</label>
                                                 <input
+                                                    name="username"
+                                                    value="<?php echo $_SESSION['user']['username'] ?>"
                                                     type="text"
                                                     placeholder="Ntaden Mic"
                                                     class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no">
                                             </div>
                                             <div>
-                                                <label class="mb-3 block font-semibold">Phone Number</label>
+                                                <label class="mb-3 block font-semibold">Email</label>
                                                 <input
+                                                    name="email"
+                                                    value="<?php echo $_SESSION['user']['email'] ?>"
                                                     type="text"
                                                     placeholder="+1-202-555-0174"
-                                                    class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no">
-                                            </div>
-                                            <div>
-                                                <label class="mb-3 block font-semibold">Skill/Occupation</label>
-                                                <input
-                                                    type="text"
-                                                    placeholder="Full Stack Developer"
-                                                    class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no">
-                                            </div>
-                                            <div>
-                                                <label class="mb-3 block font-semibold">Display Name Publicly As</label>
-                                                <input
-                                                    type="text"
-                                                    placeholder="John"
                                                     class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no">
                                             </div>
                                         </div>
                                         <div class="mb-15px">
                                             <label class="mb-3 block font-semibold">Bio</label>
-                                            <textarea
-
-                                                class="w-full py-10px px-5 text-sm text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md"
-
-                                                cols="30"
-                                                rows="10">
-                                                Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                                            </textarea>
+                                            <textarea class="w-full py-10px px-5 text-sm text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md" cols="30" rows="10"><?php echo $_SESSION['user']['description'] ?></textarea>
                                         </div>
 
                                         <div class="mt-15px">
