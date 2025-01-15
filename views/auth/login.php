@@ -1,4 +1,4 @@
-<?php include('../layout/_HEADER.php') ?>
+<?php include('../layout/_HEADER.php'); ?>
 
 <main class="bg-transparent">
     <!-- banner section -->
@@ -33,7 +33,7 @@
                     <ul class="flex gap-1 justify-center">
                         <li>
                             <a
-                                href="index.html"
+                                href="../home/index.php"
                                 class="text-lg text-blackColor2 dark:text-blackColor2-dark">Home <i class="icofont-simple-right"></i></a>
                         </li>
                         <li>
@@ -52,16 +52,15 @@
             <div class="tab md:w-2/3 mx-auto">
                 <!-- tab controller -->
 
-                <div
-                    class="tab-links grid grid-cols-2 gap-11px text-blackColor text-lg lg:text-size-22 font-semibold font-hind mb-43px mt-30px md:mt-0">
-                    <button class="py-9px lg:py-6 hover:text-primaryColor dark:text-whiteColor dark:hover:text-primaryColor bg-white dark:bg-whiteColor-dark dark:hover:bg-whiteColor-dark hover:bg-white relative group/btn shadow-bottom hover:shadow-bottom dark:shadow-standard-dark disabled:cursor-pointer rounded-standard">
+                <div class="tab-links grid grid-cols-2 gap-11px text-blackColor text-lg lg:text-size-22 font-semibold font-hind mb-43px mt-30px md:mt-0">
+                    <a href="./login.php" class="flex justify-center py-9px lg:py-6 hover:text-primaryColor dark:text-whiteColor dark:hover:text-primaryColor bg-white dark:bg-whiteColor-dark dark:hover:bg-whiteColor-dark hover:bg-white relative group/btn shadow-bottom hover:shadow-bottom dark:shadow-standard-dark disabled:cursor-pointer rounded-standard">
                         <span class="absolute w-full h-1 bg-primaryColor top-0 left-0 group-hover/btn:w-full"></span>
                         Login
-                    </button>
-                    <button class="py-9px lg:py-6 hover:text-primaryColor dark:hover:text-primaryColor dark:text-whiteColor bg-lightGrey7 dark:bg-lightGrey7-dark hover:bg-white dark:hover:bg-whiteColor-dark relative group/btn hover:shadow-bottom dark:shadow-standard-dark disabled:cursor-pointer rounded-standard">
+                    </a>
+                    <a href ="./register.php" class="flex justify-center py-9px lg:py-6 hover:text-primaryColor dark:hover:text-primaryColor dark:text-whiteColor bg-lightGrey7 dark:bg-lightGrey7-dark hover:bg-white dark:hover:bg-whiteColor-dark relative group/btn hover:shadow-bottom dark:shadow-standard-dark disabled:cursor-pointer rounded-standard">
                         <span class="absolute w-0 h-1 bg-primaryColor top-0 left-0 group-hover/btn:w-full"></span>
                         Sign Up
-                    </button>
+                    </a>
                 </div>
 
                 <!--  tab contents -->
@@ -78,11 +77,12 @@
                                 </h3>
                             </div>
 
-                            <form class="pt-25px" data-aos="fade-up">
+                            <form action="./regestredUser.php" method="POST" class="pt-25px" data-aos="fade-up">
                                 <div class="mb-25px">
                                     <label
-                                        class="text-contentColor dark:text-contentColor-dark mb-10px block">Username or email</label>
+                                        class="text-contentColor dark:text-contentColor-dark mb-10px block">Email</label>
                                     <input
+                                        name="email"
                                         type="text"
                                         placeholder="Your username or email"
                                         class="w-full h-52px leading-52px pl-5 bg-transparent text-sm focus:outline-none text-contentColor dark:text-contentColor-dark border border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 font-medium rounded">
@@ -92,6 +92,7 @@
                                     <label
                                         class="text-contentColor dark:text-contentColor-dark mb-10px block">Password</label>
                                     <input
+                                        name="password"
                                         type="password"
                                         placeholder="Password"
                                         class="w-full h-52px leading-52px pl-5 bg-transparent text-sm focus:outline-none text-contentColor dark:text-contentColor-dark border border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 font-medium rounded">
@@ -135,7 +136,6 @@
                                 </div>
                             </form>
                         </div>
-                        <?php include('./register.php') ?>
                     </div>
                 </div>
             </div>
