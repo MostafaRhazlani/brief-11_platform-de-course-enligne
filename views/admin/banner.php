@@ -7,13 +7,13 @@
                 class="flex items-center flex-wrap justify-center sm:justify-start">
                 <div class="mr-5">
                     <img
-                        src="../../assets/images/dashboard/dashbord__2.jpg"
+                        src="../../assets/images/<?php echo $_SESSION['user']['image'] ?>"
                         alt=""
                         class="w-27 h-27 md:w-22 md:h-22 lg:w-27 lg:h-27 rounded-full p-1 border-2 border-darkdeep7 box-content">
                 </div>
                 <div class="text-whiteColor font-bold text-center sm:text-start">
                     <h5 class="text-xl leading-1.2 mb-5px">Hello</h5>
-                    <h2 class="text-2xl leading-1.24">Michle Obema</h2>
+                    <h2 class="text-2xl leading-1.24"><?php echo $_SESSION['user']['firstName']?> <?php echo $_SESSION['user']['lastName']?></h2>
                 </div>
             </div>
             <div class="text-center">
@@ -43,7 +43,7 @@
                 <a
                     href="create-course.html"
                     class="text-size-15 text-whiteColor bg-primaryColor px-25px py-10px border border-whiteColor hover:text-primaryColor hover:bg-whiteColor rounded group text-nowrap flex gap-1 items-center">
-                    Create a New Course
+                    Create a New Category
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         width="24"
