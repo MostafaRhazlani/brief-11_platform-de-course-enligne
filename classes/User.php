@@ -30,7 +30,7 @@
         }
 
         public function login() {
-            $sql = "SELECT username, email, password, role, status FROM users WHERE username = '$this->username' OR email = '$this->email'";
+            $sql = "SELECT id, username, email, password, role, status FROM users WHERE username = '$this->username' OR email = '$this->email'";
             $result = $this->conn->query($sql);
             return $result->fetch(PDO::FETCH_ASSOC);
         }

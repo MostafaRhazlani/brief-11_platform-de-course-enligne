@@ -1,5 +1,5 @@
 <?php 
-
+session_start();
 require __DIR__ . '/../../classes/Database.php';
 require __DIR__ . '/../../classes/User.php';
 
@@ -29,6 +29,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if(count($errors) === 0) {
         if($existUser['status'] === 1) {
+            $_SESSION['user'] = $existUser['id'];
             if($existUser['role'] === 'admin') {
                 header('location: /views/admin/dashboard.php');
             } else if($existUser['role'] === 'teacher') {
