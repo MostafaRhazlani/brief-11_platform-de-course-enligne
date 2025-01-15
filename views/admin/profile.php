@@ -30,7 +30,7 @@
                     <span class="inline-block">Registration Date</span>
                   </div>
                   <div class="md:col-start-5 md:col-span-8">
-                    <span class="inline-block">20, January 2024 9:00 PM</span>
+                    <span class="inline-block"><?php echo $_SESSION['user']['dateJoined'] ?></span>
                   </div>
                 </li>
 
@@ -40,7 +40,7 @@
                     <span class="inline-block">First Name</span>
                   </div>
                   <div class="md:col-start-5 md:col-span-8">
-                    <span class="inline-block">Michle</span>
+                    <span class="inline-block"><?php echo $_SESSION['user']['firstName'] ?></span>
                   </div>
                 </li>
                 <li
@@ -49,7 +49,7 @@
                     <span class="inline-block">Last Name</span>
                   </div>
                   <div class="md:col-start-5 md:col-span-8">
-                    <span class="inline-block">Obema</span>
+                    <span class="inline-block"><?php echo $_SESSION['user']['lastName'] ?></span>
                   </div>
                 </li>
 
@@ -59,7 +59,7 @@
                     <span class="inline-block">Username</span>
                   </div>
                   <div class="md:col-start-5 md:col-span-8">
-                    <span class="inline-block"> obema007</span>
+                    <span class="inline-block"><?php echo $_SESSION['user']['username'] ?></span>
                   </div>
                 </li>
 
@@ -69,7 +69,7 @@
                     <span class="inline-block">Email</span>
                   </div>
                   <div class="md:col-start-5 md:col-span-8">
-                    <span class="inline-block"> obema@example.com</span>
+                    <span class="inline-block"><?php echo $_SESSION['user']['email'] ?></span>
                   </div>
                 </li>
 
@@ -79,7 +79,7 @@
                     <span class="inline-block">Phone Number</span>
                   </div>
                   <div class="md:col-start-5 md:col-span-8">
-                    <span class="inline-block">+55 669 4456 25987</span>
+                    <span class="inline-block"></span>
                   </div>
                 </li>
 
@@ -89,7 +89,7 @@
                     <span class="inline-block">Expert</span>
                   </div>
                   <div class="md:col-start-5 md:col-span-8">
-                    <span class="inline-block">Graphics Design</span>
+                    <span class="inline-block"><?php echo $_SESSION['user']['experience'] ?></span>
                   </div>
                 </li>
 
@@ -99,12 +99,7 @@
                     <span class="inline-block">Biography</span>
                   </div>
                   <div class="md:col-start-5 md:col-span-8">
-                    <span class="inline-block">Lorem, ipsum dolor sit amet consectetur adipisicing
-                      elit. Maiores veniam, delectus accusamus nesciunt
-                      laborum repellat laboriosam, deserunt possimus itaque
-                      iusto perferendis voluptatum quaerat cupiditate vitae.
-                      Esse aut illum perferendis nulla, corporis impedit
-                      quasi alias est!</span>
+                    <span class="inline-block"><?php echo $_SESSION['user']['description'] ?></span>
                   </div>
                 </li>
               </ul>
