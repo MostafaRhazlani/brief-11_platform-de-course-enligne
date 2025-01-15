@@ -96,7 +96,7 @@
         }
 
         public function setPassword($password) {
-            if(preg_match("/^(?=.*[A-Za-z])(?=.*\d).{9,}$/", $password) == 0) {
+            if(preg_match("/^(?=.*[A-Za-z]).{9,}$/", $password) == 0) {
                 $this->errors['password'] = 1;
                 $_SESSION['validationPassword'] = 'password must be more than 8 character';
             } else {
@@ -114,17 +114,17 @@
         }
 
         public function register() {
-            $existUser = $this->checkUsernameEmail($this->email, $this->username);
+            $existUsernameOrEmail = $this->checkInfoUser($this->email, $this->username);
 
-            if($existUser) {
-                if($existUser['username'] === $this->username) {
+            if($existUsernameOrEmail) {
+                if($existUsernameOrEmail['username'] === $this->username) {
                     $this->errors['existUsername'] = 1;
                     $_SESSION['existUsername'] = 'username is already exist';
                 } else {
                     unset($_SESSION['existUsername']);
                 }
 
-                if($existUser['email'] === $this->email) {
+                if($existUsernameOrEmail['email'] === $this->email) {
                     $this->errors['existEmail'] = 1;
                     $_SESSION['existEmail'] = 'email is already exist';
                 } else {
@@ -159,16 +159,43 @@
             }
         }
 
-        public function checkUsernameEmail($email, $username) {
-            $sql = "SELECT username, email FROM users WHERE email = '$email' OR username = '$username'";
+        public function checkInfoUser($email, $username) {
+            $sql = "SELECT * FROM users WHERE email = '$email' OR username = '$username'";
             $result = $this->conn->query($sql);
             return $result->fetch(PDO::FETCH_ASSOC);
         }
 
         public function login() {
-            $sql = "SELECT * FROM users WHERE email = '$this->email'";
-            $result = $this->conn->query($sql);
-            return $result->fetch(PDO::FETCH_ASSOC);
+            $check = $this->checkInfoUser($this->email, "");
+            if(!$check) {
+                $this->errors['invalidEmailPassword'] = 1;
+                $_SESSION['invalidEmailPassword'] = 'email or password is not correct';
+            }
+
+            if(!password_verify($this->password, $check['password'])) {
+                $this->errors['invalidEmailPassword'] = 1;
+                $_SESSION['invalidEmailPassword'] = 'email or password is not correct';
+            }
+
+            if(count($this->errors) === 0) {
+                if($check['status'] === 1) {
+                    $_SESSION['user'] = $check;
+                    if($check['role'] === "admin") {
+                        header('location: /views/admin/dashboard.php');
+                    } else if($check['role'] === "teacher") {
+                        header('location: /views/teacher/dashboard.php');
+                    } else {
+                        header('location: /viwes/home/index.php');
+                    }
+                    unset($_SESSION['notAccept']);
+                    return true;
+                } else {
+                    $_SESSION['notAccept'] = "The admin has not accepted you yet";
+                    header('location: ../auth/login.php');
+                }
+            } else {
+                header('location: ../auth/login.php');
+            }
         }
     }
 

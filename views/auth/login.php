@@ -76,7 +76,7 @@
                                     Login
                                 </h3>
                             </div>
-
+                            <span><?php echo (isset($_SESSION['notAccept'])) ? "<span class='text-secondaryColor'>". $_SESSION['notAccept'] ."</span>" : '' ?></span>
                             <form action="./regestredUser.php" method="POST" class="pt-25px" data-aos="fade-up">
                                 <div class="mb-25px">
                                     <label
@@ -86,7 +86,8 @@
                                         type="text"
                                         placeholder="Your username or email"
                                         class="w-full h-52px leading-52px pl-5 bg-transparent text-sm focus:outline-none text-contentColor dark:text-contentColor-dark border border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 font-medium rounded">
-                                </div>
+                                        <?php echo (isset($_SESSION['invalidEmailPassword'])) ? "<span class='text-secondaryColor'>". $_SESSION['invalidEmailPassword'] ."</span>" : '';?>
+                                    </div>
 
                                 <div class="mb-25px">
                                     <label
@@ -96,6 +97,10 @@
                                         type="password"
                                         placeholder="Password"
                                         class="w-full h-52px leading-52px pl-5 bg-transparent text-sm focus:outline-none text-contentColor dark:text-contentColor-dark border border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 font-medium rounded">
+                                    <?php 
+                                        echo (isset($_SESSION['invalidEmailPassword'])) ? "<span class='text-secondaryColor'>". $_SESSION['invalidEmailPassword'] ."</span><br>" : '';
+                                        echo (isset($_SESSION['validationPassword'])) ? "<span class='text-secondaryColor'>". $_SESSION['validationPassword'] ."</span>" : '' 
+                                    ?>
                                 </div>
 
                                 <div
@@ -166,4 +171,6 @@
     </section>
 </main>
 
-<?php include('../layout/_FOOTER.php') ?>
+<?php 
+session_unset();
+include('../layout/_FOOTER.php') ?>
