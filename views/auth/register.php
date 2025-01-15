@@ -88,6 +88,7 @@
                                     type="text"
                                     placeholder="First Name"
                                     class="w-full h-52px leading-52px pl-5 bg-transparent text-sm focus:outline-none text-contentColor dark:text-contentColor-dark border border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 font-medium rounded">
+                                    <?php echo (isset($_SESSION['validationFirstName'])) ? "<span class='text-secondaryColor'>".$_SESSION['validationFirstName'] ."</span>" : ''?>
                                 </div>
                                 <div>
                                 <label
@@ -97,6 +98,7 @@
                                     type="text"
                                     placeholder="Last Name"
                                     class="w-full h-52px leading-52px pl-5 bg-transparent text-sm focus:outline-none text-contentColor dark:text-contentColor-dark border border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 font-medium rounded">
+                                    <?php echo (isset($_SESSION['validationLastName'])) ? "<span class='text-secondaryColor'>". $_SESSION['validationLastName'] ."</span>" : '' ?>
                                 </div>
                             </div>
                             <div
@@ -109,6 +111,9 @@
                                     type="text"
                                     placeholder="Username"
                                     class="w-full h-52px leading-52px pl-5 bg-transparent text-sm focus:outline-none text-contentColor dark:text-contentColor-dark border border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 font-medium rounded">
+                                    <?php echo (isset($_SESSION['validationUsername'])) ? "<span class='text-secondaryColor'>". $_SESSION['validationUsername'] ."</span>" : '';
+                                          echo (isset($_SESSION['existUsername'])) ? "<span class='text-secondaryColor'>". $_SESSION['existUsername'] ."</span>" : ''
+                                    ?>
                                 </div>
                                 <div>
                                 <label
@@ -118,18 +123,23 @@
                                     type="email"
                                     placeholder="Your Email"
                                     class="w-full h-52px leading-52px pl-5 bg-transparent text-sm focus:outline-none text-contentColor dark:text-contentColor-dark border border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 font-medium rounded">
+                                    <?php echo (isset($_SESSION['validationEmail'])) ? "<span class='text-secondaryColor'>". $_SESSION['validationEmail'] ."</span>" : '';
+                                            echo (isset($_SESSION['existEmail'])) ? "<span class='text-secondaryColor'>". $_SESSION['existEmail'] ."</span>" : ''
+
+                                    ?>
                                 </div>
                             </div>
                             <div
                                 class="grid grid-cols-1 lg:grid-cols-2 lg:gap-x-30px gap-y-25px mb-25px">
                                 <div>
-                                <label
-                                    class="text-contentColor dark:text-contentColor-dark mb-10px block">Password</label>
-                                <input
-                                    name="password"
-                                    type="password"
-                                    placeholder="Password"
-                                    class="w-full h-52px leading-52px pl-5 bg-transparent text-sm focus:outline-none text-contentColor dark:text-contentColor-dark border border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 font-medium rounded">
+                                    <label
+                                        class="text-contentColor dark:text-contentColor-dark mb-10px block">Password</label>
+                                    <input
+                                        name="password"
+                                        type="password"
+                                        placeholder="Password"
+                                        class="w-full h-52px leading-52px pl-5 bg-transparent text-sm focus:outline-none text-contentColor dark:text-contentColor-dark border border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 font-medium rounded">
+                                        <?php echo (isset($_SESSION['validationPassword'])) ? "<span class='text-secondaryColor'>". $_SESSION['validationPassword'] ."</span>" : '' ?>
                                 </div>
                                 <div>
                                     <label
@@ -139,6 +149,8 @@
                                         type="password"
                                         placeholder="Re-Enter Password"
                                         class="w-full h-52px leading-52px pl-5 bg-transparent text-sm focus:outline-none text-contentColor dark:text-contentColor-dark border border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 font-medium rounded">
+                                        <?php echo isset($_SESSION['invalidPassword']) ? "<span class='text-secondaryColor'>". $_SESSION['invalidPassword'] ."</span>" : '';
+                                        ?>
                                 </div>
                             </div>
                             <div>
@@ -188,4 +200,7 @@
     </section>
 </main>
 
-<?php include('../layout/_FOOTER.php') ?>
+<?php
+    session_unset();
+    include('../layout/_FOOTER.php') 
+?>

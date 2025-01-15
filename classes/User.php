@@ -1,5 +1,5 @@
 <?php
-
+    session_start();
     class User {
         protected $username;
         protected $firstName;
@@ -9,9 +9,10 @@
         protected $role;
         protected $status;
         protected $image;
-        protected $conn;
+        private $conn;
+        private $errors;
 
-        public function __construct($conn, $username = "", $firstName = "", $lastName = "", $email = "", $password = "", $role = "", $status = "")
+        public function __construct($conn, $username = "", $firstName = "", $lastName = "", $email = "", $password = "", $role = "", $status = "", $errors = [])
         {
             $this->username = $username;
             $this->firstName = $firstName;
@@ -21,16 +22,151 @@
             $this->role = $role;
             $this->status = $status;
             $this->conn = $conn;
+            $this->errors = $errors;
         }
 
-        public function checkUsernameEmail() {
-            $sql = "SELECT username, email FROM users";
+        public function getUsername() {
+            return $this->username;
+        }
+
+        public function gatFirstName() {
+            return $this->firstName;
+        }
+
+        public function getLastName() {
+            return $this->lastName;
+        }
+
+        public function getEmail() {
+            return $this->email;
+        }
+
+        public function getPassword() {
+            return $this->password;
+        }
+
+        public function getRole() {
+            return $this->role;
+        }
+
+        public function getStatus() {
+            return $this->status;
+        }
+
+        public function setUsername($username) {
+            if(preg_match("/^@[a-zA-Z]{4,}$/", $username) == 0) {
+                $this->errors['username'] = 1;
+                $_SESSION['validationUsername'] = 'username is short';
+            } else {
+                unset($_SESSION['validationUsername']);
+            }
+            $this->username = $username;
+        }
+
+        public function setFirstName($firstName) {
+            if(preg_match("/^[a-zA-z]{4,}$/", $firstName) == 0) {
+                $this->errors['firstName'] = 1;
+                $_SESSION['validationFirstName'] = 'first name is short';
+            } else {
+                unset($_SESSION['validationFirstName']);
+                // session_unset();
+            }
+            $this->firstName = $firstName;
+        }
+
+        public function setLastName($lastName) {
+            if(preg_match("/^[a-zA-z]{4,}$/", $lastName) == 0) {
+                $this->errors['lastName'] = 1;
+                $_SESSION['validationLastName'] = 'last name is short';
+            } else {
+                unset($_SESSION['validationLastName']);
+
+            }
+            $this->lastName = $lastName;
+        }
+
+        public function setEmail($email) {
+            if(preg_match("/^[a-zA-Z]+@([a-z]{2,}\.)+[a-z]{2,4}$/", $email) == 0) {
+                $this->errors['email'] = 1;
+                $_SESSION['validationEmail'] = 'Email has invalid form';
+            } else {
+                unset($_SESSION['validationEmail']);
+            }
+            $this->email = $email;
+        }
+
+        public function setPassword($password) {
+            if(preg_match("/^(?=.*[A-Za-z])(?=.*\d).{9,}$/", $password) == 0) {
+                $this->errors['password'] = 1;
+                $_SESSION['validationPassword'] = 'password must be more than 8 character';
+            } else {
+                unset($_SESSION['validationPassword']);
+            }
+            $this->password = $password;
+        }
+
+        public function setRole($role) {
+            $this->role = $role;
+        }
+
+        public function setStatus($status) {
+            $this->status = $status;
+        }
+
+        public function register() {
+            $existUser = $this->checkUsernameEmail($this->email, $this->username);
+
+            if($existUser) {
+                if($existUser['username'] === $this->username) {
+                    $this->errors['existUsername'] = 1;
+                    $_SESSION['existUsername'] = 'username is already exist';
+                } else {
+                    unset($_SESSION['existUsername']);
+                }
+
+                if($existUser['email'] === $this->email) {
+                    $this->errors['existEmail'] = 1;
+                    $_SESSION['existEmail'] = 'email is already exist';
+                } else {
+                    unset($_SESSION['existEmail']);
+                }
+
+            }
+
+            if($this->getPassword() !== $_POST['confirm_password']) {
+                $this->errors['invalidPassword'] = 1;
+                $_SESSION['invalidPassword'] = 'password and confirm password must be have same value';
+            } else {
+                unset($_SESSION['invalidPassword']);
+            }
+
+            $sql = "INSERT INTO users(username, firstName, lastName, email, password, role, status) VALUES(?,?,?,?,?,?,?)";
+            $stmt = $this->conn->prepare($sql);
+
+            $password_hash = password_hash($this->password, PASSWORD_BCRYPT);
+            $stmt->bindValue(1, $this->username, PDO::PARAM_STR);
+            $stmt->bindValue(2, $this->firstName, PDO::PARAM_STR);
+            $stmt->bindValue(3, $this->lastName, PDO::PARAM_STR);
+            $stmt->bindValue(4, $this->email, PDO::PARAM_STR);
+            $stmt->bindValue(5, $password_hash, PDO::PARAM_STR);
+            $stmt->bindValue(6, $this->role, PDO::PARAM_STR);
+            $stmt->bindValue(7, $this->status, PDO::PARAM_BOOL);
+
+            if(count($this->errors) == 0) {
+                return $stmt->execute();
+            } else {
+                header('location: ../auth/register.php');
+            }
+        }
+
+        public function checkUsernameEmail($email, $username) {
+            $sql = "SELECT username, email FROM users WHERE email = '$email' OR username = '$username'";
             $result = $this->conn->query($sql);
             return $result->fetch(PDO::FETCH_ASSOC);
         }
 
         public function login() {
-            $sql = "SELECT id, username, email, password, role, status FROM users WHERE username = '$this->username' OR email = '$this->email'";
+            $sql = "SELECT * FROM users WHERE email = '$this->email'";
             $result = $this->conn->query($sql);
             return $result->fetch(PDO::FETCH_ASSOC);
         }
