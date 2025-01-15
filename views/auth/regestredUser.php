@@ -29,7 +29,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if(count($errors) === 0) {
         if($existUser['status'] === 1) {
-            $_SESSION['user'] = $existUser['id'];
+            $_SESSION['user'] = $existUser;
             if($existUser['role'] === 'admin') {
                 header('location: /views/admin/dashboard.php');
             } else if($existUser['role'] === 'teacher') {

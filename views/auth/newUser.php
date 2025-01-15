@@ -1,5 +1,5 @@
 <?php
-    require_once __DIR__ . '/../../classes/Visitor.php';
+    require_once __DIR__ . '/../../classes/User.php';
     require_once __DIR__ . '/../../classes/Database.php';
 
     
@@ -42,7 +42,7 @@
                 $status = 0;
             }
             
-            $visitor = new Visitor($conn, $username , $firstName, $lastName, $email, $password, $role, $status);
+            $visitor = new User($conn, $username , $firstName, $lastName, $email, $password, $role, $status);
             $register = $visitor->register();
 
             if($register) {
