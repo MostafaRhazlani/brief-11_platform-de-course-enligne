@@ -61,5 +61,13 @@
                 header('location: /views/user/admin/categories.php');
             }
         }
+
+        public function deleteCategory() {
+            $sql = "DELETE FROM categories WHERE id = ?";
+            $stmt = $this->conn->prepare($sql);
+            $stmt->bindValue(1, $this->id, PDO::PARAM_INT);
+            
+            return $stmt->execute();
+        }
     }
 ?>

@@ -77,7 +77,7 @@
                                                 </td>
                                                 <td class="flex items-center gap-2 px-5px py-10px md:px-5">
                                                     <div class="text-xs">
-                                                        <form action="" method="post">
+                                                        <form action="./crudCategory/deleteCategory.php" method="post">
                                                             <input type="hidden" name="idCategory" value="<?php echo $category['id'] ?>">
                                                             <button class="h-22px inline-block px-7px leading-22px font-bold text-whiteColor hover:text-secondaryColor bg-secondaryColor hover:bg-whiteColor dark:hover:bg-whiteColor-dark border border-secondaryColor rounded-md">
                                                                 Delete
