@@ -148,7 +148,7 @@
               <a class="flex items-center gap-3 group cursor-pointer">
                 <div>
                   <img
-                    src="../../assets/images/footer/footer__1.png"
+                    src="/assets/images/footer/footer__1.png"
                     alt=""
                     class="w-61px h-54px">
                 </div>
@@ -166,7 +166,7 @@
               <a class="flex items-center gap-3 group cursor-pointer">
                 <div>
                   <img
-                    src="../../assets/images/footer/footer__2.png"
+                    src="/assets/images/footer/footer__2.png"
                     alt=""
                     class="w-61px h-54px">
                 </div>
@@ -183,7 +183,7 @@
               <a class="flex items-center gap-3 group cursor-pointer">
                 <div>
                   <img
-                    src="../../assets/images/footer/footer__3.png"
+                    src="/assets/images/footer/footer__3.png"
                     alt=""
                     class="w-61px h-54px">
                 </div>
@@ -207,7 +207,7 @@
         class="grid grid-cols-1 lg:grid-cols-12 gap-5 lg:gap-30px pt-10 items-center">
         <div class="lg:col-start-1 lg:col-span-3">
           <a href="#">
-            <img src="../../assets/images/logo/logo_2.png" alt="">
+            <img src="/assets/images/logo/logo_2.png" alt="">
           </a>
         </div>
 
@@ -252,29 +252,29 @@
   </div>
 </footer>
 
-<script src="../../assets/js/swiper-bundle.min.js"></script>
-<script src="../../assets/js/isotope.pkgd.min.js"></script>
-<script src="../../assets/js/accordion.js"></script>
-<script src="../../assets/js/chart.js"></script>
-<script src="../../assets/js/count.js"></script>
-<script src="../../assets/js/countdown.js"></script>
-<script src="../../assets/js/counterup.js"></script>
-<script src="../../assets/js/dropdown.js"></script>
-<script src="../../assets/js/filter.js"></script>
-<script src="../../assets/js/mobileMenu.js"></script>
-<script src="../../assets/js/modal.js"></script>
-<script src="../../assets/js/popup.js"></script>
-<script src="../../assets/js/preloader.js"></script>
-<script src="../../assets/js/scrollUp.js"></script>
-<script src="../../assets/js/slider.js"></script>
-<script src="../../assets/js/smoothScroll.js"></script>
-<script src="../../assets/js/stickyHeader.js"></script>
-<script src="../../assets/js/tabs.js"></script>
-<script src="../../assets/js/theme.js"></script>
-<script src="../../assets/js/videoModal.js"></script>
-<script src="../../assets/js/vanilla-tilt.js"></script>
-<script src="../../assets/js/aos.js"></script>
-<script src="../../assets/js/main.js"></script>
+<script src="/assets/js/swiper-bundle.min.js"></script>
+<script src="/assets/js/isotope.pkgd.min.js"></script>
+<script src="/assets/js/accordion.js"></script>
+<script src="/assets/js/chart.js"></script>
+<script src="/assets/js/count.js"></script>
+<script src="/assets/js/countdown.js"></script>
+<script src="/assets/js/counterup.js"></script>
+<script src="/assets/js/dropdown.js"></script>
+<script src="/assets/js/filter.js"></script>
+<script src="/assets/js/mobileMenu.js"></script>
+<script src="/assets/js/modal.js"></script>
+<script src="/assets/js/popup.js"></script>
+<script src="/assets/js/preloader.js"></script>
+<script src="/assets/js/scrollUp.js"></script>
+<script src="/assets/js/slider.js"></script>
+<script src="/assets/js/smoothScroll.js"></script>
+<script src="/assets/js/stickyHeader.js"></script>
+<script src="/assets/js/tabs.js"></script>
+<script src="/assets/js/theme.js"></script>
+<script src="/assets/js/videoModal.js"></script>
+<script src="/assets/js/vanilla-tilt.js"></script>
+<script src="/assets/js/aos.js"></script>
+<script src="/assets/js/main.js"></script>
 </body>
 
 <!-- Mirrored from html.themewin.com/edurcok-preview-tailwind/edurock/login.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 12 Jan 2025 03:16:42 GMT -->

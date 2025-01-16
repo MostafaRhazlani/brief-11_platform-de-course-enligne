@@ -11,15 +11,15 @@
     <link
         rel="icon"
         type="image/x-icon"
-        href="../../assets/images/pre.png">
+        href="/assets/images/pre.png">
     <!-- link stylesheet -->
-    <link rel="stylesheet" href="../../assets/css/icofont.min.css">
-    <link rel="stylesheet" href="../../assets/css/popup.css">
+    <link rel="stylesheet" href="/assets/css/icofont.min.css">
+    <link rel="stylesheet" href="/assets/css/popup.css">
 
-    <link rel="stylesheet" href="../../assets/css/swiper-bundle.min.css">
-    <link rel="stylesheet" href="../../assets/css/video-modal.css">
-    <link rel="stylesheet" href="../../assets/css/aos.css">
-    <link rel="stylesheet" href="../../assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/swiper-bundle.min.css">
+    <link rel="stylesheet" href="/assets/css/video-modal.css">
+    <link rel="stylesheet" href="/assets/css/aos.css">
+    <link rel="stylesheet" href="/assets/css/style.css">
 </head>
 
 <body
@@ -31,7 +31,7 @@
         <div
             class="w-90px h-90px border-5px border-t-blue border-r-blue border-b-blue-light border-l-blue-light rounded-full animate-spin-infinit"></div>
         <div class="absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2">
-            <img src="../../assets/images/pre.png" alt="Preloader" class="h-10 w-10 block">
+            <img src="/assets/images/pre.png" alt="Preloader" class="h-10 w-10 block">
         </div>
     </div>
     <!-- theme fixed shadow -->
@@ -142,8 +142,8 @@
                     <div class="grid grid-cols-2 lg:grid-cols-12 items-center gap-15px">
                         <!-- navbar left -->
                         <div class="lg:col-start-1 lg:col-span-2">
-                            <a href="../../index.php" class="block"><img
-                                    src="../../../../assets/images/logo/logo_1.png"
+                            <a href="/views/home/index.php" class="block"><img
+                                    src="/assets/images/logo/logo_1.png"
                                     alt="Logo"
                                     class="w-logo-sm lg:w-auto py-2"></a>
                         </div>
@@ -151,17 +151,17 @@
                         <div class="hidden lg:block lg:col-start-3 lg:col-span-7">
                             <ul class="nav-list flex justify-center">
                                 <li class="nav-item group">
-                                    <a href="../home/index.php" class="px-5 lg:px-10px 2xl:px-15px 3xl:px-5 py-10 lg:py-5 2xl:py-30px 3xl:py-10 leading-sm 2xl:leading-lg text-base lg:text-sm 2xl:text-base font-semibold block group-hover:text-primaryColor dark:text-whiteColor">
+                                    <a href="/views/home/index.php" class="px-5 lg:px-10px 2xl:px-15px 3xl:px-5 py-10 lg:py-5 2xl:py-30px 3xl:py-10 leading-sm 2xl:leading-lg text-base lg:text-sm 2xl:text-base font-semibold block group-hover:text-primaryColor dark:text-whiteColor">
                                         Home
                                     </a>
                                 </li>
                                 <li class="nav-item group">
-                                    <a href="../courses/index.php" class="px-5 lg:px-10px 2xl:px-15px 3xl:px-5 py-10 lg:py-5 2xl:py-30px 3xl:py-10 leading-sm 2xl:leading-lg text-base lg:text-sm 2xl:text-base font-semibold block group-hover:text-primaryColor dark:text-whiteColor">
+                                    <a href="/views/courses/index.php" class="px-5 lg:px-10px 2xl:px-15px 3xl:px-5 py-10 lg:py-5 2xl:py-30px 3xl:py-10 leading-sm 2xl:leading-lg text-base lg:text-sm 2xl:text-base font-semibold block group-hover:text-primaryColor dark:text-whiteColor">
                                         Courses
                                     </a>
                                 </li>
                                 <li class="nav-item group relative">
-                                    <a href="../admin/dashboard.php" class="px-5 lg:px-10px 2xl:px-15px 3xl:px-5 py-10 lg:py-5 2xl:py-30px 3xl:py-10 leading-sm 2xl:leading-lg text-base lg:text-sm 2xl:text-base font-semibold block group-hover:text-primaryColor dark:text-whiteColor">
+                                    <a href="/views/user/admin/dashboard.php" class="px-5 lg:px-10px 2xl:px-15px 3xl:px-5 py-10 lg:py-5 2xl:py-30px 3xl:py-10 leading-sm 2xl:leading-lg text-base lg:text-sm 2xl:text-base font-semibold block group-hover:text-primaryColor dark:text-whiteColor">
                                         Dashboard
                                     </a>
                                 </li>
@@ -186,7 +186,7 @@
                                                 class="flex flex-col gap-y-5 pb-5 mb-30px border-b border-borderColor dark:border-borderColor-dark">
                                                 <li class="relative flex gap-x-15px items-center">
                                                     <a href="course-details.html"><img
-                                                            src="../../assets/images/grid/cart1.jpg"
+                                                            src="/assets/images/grid/cart1.jpg"
                                                             alt="photo"
                                                             class="w-card-img py-[3px]"></a>
                                                     <div>
@@ -229,7 +229,7 @@
                                 </li>
                                 <li class="hidden lg:block">
                                     <a
-                                        href="../auth/login.php"
+                                        href="/views/auth/login.php"
                                         class="text-size-12 2xl:text-size-15 px-15px py-2 text-blackColor hover:text-whiteColor bg-whiteColor block hover:bg-primaryColor border border-borderColor1 rounded-standard font-semibold mr-[7px] 2xl:mr-15px dark:text-blackColor-dark dark:bg-whiteColor-dark dark:hover:bg-primaryColor dark:hover:text-whiteColor dark:hover:border-primaryColor"><i class="icofont-user-alt-5"></i></a>
                                 </li>
                                 <li class="hidden lg:block">
