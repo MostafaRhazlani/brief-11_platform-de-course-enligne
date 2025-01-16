@@ -54,7 +54,7 @@
             </li>
             <li
                 class="py-10px border-b border-borderColor dark:border-borderColor-dark">
-                <a href="/views/user/courses.php" class="<?php echo ($page === "/views/user/courses.php") ? "text-primaryColor dark:text-primaryColor" : "text-contentColor dark:text-contentColor-dark"?> hover:text-primaryColor dark:hover:text-primaryColor leading-1.8 flex gap-3 text-nowrap">
+                <a href="/views/user/courses/courses.php" class="<?php echo ($page === "/views/user/courses/courses.php") ? "text-primaryColor dark:text-primaryColor" : "text-contentColor dark:text-contentColor-dark"?> hover:text-primaryColor dark:hover:text-primaryColor leading-1.8 flex gap-3 text-nowrap">
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         width="16"

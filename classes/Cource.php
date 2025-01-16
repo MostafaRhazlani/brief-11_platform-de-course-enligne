@@ -106,6 +106,15 @@
             $stmt = $this->conn->query($sql);
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
+
+        public function acceptCourse() {
+            $sql = "UPDATE courses SET statusCourse = ? WHERE id = ?";
+            $stmt = $this->conn->prepare($sql);
+            $stmt->bindValue(1, $this->statusCourse, PDO::PARAM_BOOL);
+            $stmt->bindValue(2, $this->id, PDO::PARAM_INT);
+
+            return $stmt->execute();
+        }
     }
 
 ?>
