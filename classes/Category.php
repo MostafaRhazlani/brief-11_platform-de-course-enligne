@@ -31,7 +31,7 @@
         }
 
         public function getAllCategories() {
-            $sql = "SELECT * FROM categories";
+            $sql = "SELECT * FROM categories ORDER BY id DESC";
             $stmt = $this->conn->query($sql);
 
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
