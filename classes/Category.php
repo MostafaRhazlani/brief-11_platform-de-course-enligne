@@ -48,5 +48,18 @@
                 header('location: /views/user/admin/categories.php');
             }
         }
+
+        public function updateCategoty() {
+            $sql = "UPDATE categories SET nameCategory = ? WHERE id = ?";
+            $stmt = $this->conn->prepare($sql);
+            $stmt->bindValue(1, $this->nameCategory, PDO::PARAM_STR);
+            $stmt->bindValue(2, $this->id, PDO::PARAM_INT);
+            
+            if(count($this->errors) == 0) {
+                return $stmt->execute();
+            } else {
+                header('location: /views/user/admin/categories.php');
+            }
+        }
     }
 ?>

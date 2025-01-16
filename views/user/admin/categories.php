@@ -85,11 +85,11 @@
                                                         </form>
                                                     </div>
                                                     <div class="text-xs">
-                                                        <form action="" method="post" class="flex items-center">
+                                                        <form action="./crudCategory/updateCategory.php" method="post" class="flex items-center">
                                                             <button class="h-22px inline-block px-7px leading-22px font-bold text-whiteColor hover:text-primaryColor bg-primaryColor hover:bg-whiteColor dark:hover:bg-whiteColor-dark border border-primaryColor rounded-md mr-2">
                                                                 Edit
                                                             </button>
-                                                            <input type="hidden" value="<?php echo $category['id'] ?>">
+                                                            <input type="hidden" name="idCategory" value="<?php echo $category['id'] ?>">
                                                             <input
                                                                 name="nameCategory"
                                                                 value="<?php echo $category['nameCategory'] ?>"
