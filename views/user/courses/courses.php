@@ -179,7 +179,7 @@
                                                                             </div>
                                                                         <?php } ?>
                                                                         <div>
-                                                                            <form action="" method="POST">
+                                                                            <form action="./deleteCourse.php" method="POST">
                                                                                 <input type="hidden" name="idCourse" value="<?php echo $course['id'] ?>">
                                                                                 <button class="w-full text-size-15 inline-block px-25px leading-22px font-bold text-whiteColor hover:text-secondaryColor bg-secondaryColor hover:bg-whiteColor dark:hover:bg-whiteColor-dark border border-secondaryColor rounded">
                                                                                     Delete
