@@ -181,9 +181,9 @@
                 if($check['status'] === 1) {
                     $_SESSION['user'] = $check;
                     if($check['role'] === "admin") {
-                        header('location: /views/admin/dashboard.php');
+                        header('location: /views/user/admin/dashboard.php');
                     } else if($check['role'] === "teacher") {
-                        header('location: /views/teacher/dashboard.php');
+                        header('location: /views/user/teacher/dashboard.php');
                     } else {
                         header('location: /viwes/home/index.php');
                     }
