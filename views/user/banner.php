@@ -8,7 +8,7 @@
                 class="flex items-center flex-wrap justify-center sm:justify-start">
                 <div class="mr-5">
                     <img
-                        src="/assets/images/<?php echo $_SESSION['user']['image'] ?>"
+                        src="/assets/images/<?php echo $_SESSION['user']['imageProfile'] ?>"
                         alt=""
                         class="w-27 h-27 md:w-22 md:h-22 lg:w-27 lg:h-27 rounded-full p-1 border-2 border-darkdeep7 box-content">
                 </div>
