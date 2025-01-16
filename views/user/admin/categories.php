@@ -38,9 +38,9 @@
                                 All Categories
                             </h2>
 
-                            <form action="" method="POST" class="gap-3 md:justify-end w-full flex justify-center flex-wrap md:flex-nowrap">
+                            <form action="./crudCategory/createCategoty.php" method="POST" class="gap-3 md:justify-end w-full flex justify-center flex-wrap md:flex-nowrap">
                                 <input
-                                    name="email"
+                                    name="nameCategory"
                                     type="text"
                                     placeholder="Enter name category"
                                     class="h-52px w-full leading-52px pl-5 bg-transparent text-sm focus:outline-none text-contentColor dark:text-contentColor-dark border border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 font-medium rounded">
@@ -78,6 +78,7 @@
                                                 <td class="flex items-center gap-2 px-5px py-10px md:px-5">
                                                     <div class="text-xs">
                                                         <form action="" method="post">
+                                                            <input type="hidden" name="idCategory" value="<?php echo $category['id'] ?>">
                                                             <button class="h-22px inline-block px-7px leading-22px font-bold text-whiteColor hover:text-secondaryColor bg-secondaryColor hover:bg-whiteColor dark:hover:bg-whiteColor-dark border border-secondaryColor rounded-md">
                                                                 Delete
                                                             </button>
@@ -88,6 +89,7 @@
                                                             <button class="h-22px inline-block px-7px leading-22px font-bold text-whiteColor hover:text-primaryColor bg-primaryColor hover:bg-whiteColor dark:hover:bg-whiteColor-dark border border-primaryColor rounded-md mr-2">
                                                                 Edit
                                                             </button>
+                                                            <input type="hidden" value="<?php echo $category['id'] ?>">
                                                             <input
                                                                 name="nameCategory"
                                                                 value="<?php echo $category['nameCategory'] ?>"
