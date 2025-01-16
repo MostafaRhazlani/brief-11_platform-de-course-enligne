@@ -3,11 +3,12 @@
     <div class="container-fluid-2">
         <div
             class="bg-primaryColor p-5 md:p-10 rounded-5 flex justify-center md:justify-between items-center flex-wrap gap-2">
+            <?php if(isset($_SESSION['user'])) { ?>
             <div
                 class="flex items-center flex-wrap justify-center sm:justify-start">
                 <div class="mr-5">
                     <img
-                        src="../../assets/images/<?php echo $_SESSION['user']['image'] ?>"
+                        src="/assets/images/<?php echo $_SESSION['user']['image'] ?>"
                         alt=""
                         class="w-27 h-27 md:w-22 md:h-22 lg:w-27 lg:h-27 rounded-full p-1 border-2 border-darkdeep7 box-content">
                 </div>
@@ -16,6 +17,7 @@
                     <h2 class="text-2xl leading-1.24"><?php echo $_SESSION['user']['firstName']?> <?php echo $_SESSION['user']['lastName']?></h2>
                 </div>
             </div>
+            <?php } ?>
             <div class="text-center">
                 <div class="text-yellow">
                     <i class="icofont-star"></i>

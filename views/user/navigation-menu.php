@@ -12,7 +12,7 @@
         <ul>
             <li
                 class="py-10px border-b border-borderColor dark:border-borderColor-dark">
-                <a href="./dashboard.php" class="<?php echo ($page === "/views/admin/dashboard.php") ? "text-primaryColor dark:text-primaryColor" : "text-contentColor dark:text-contentColor-dark"?> hover:text-primaryColor dark:hover:text-primaryColor leading-1.8 flex gap-3 text-nowrap">
+                <a href="/views/user/admin/dashboard.php" class="<?php echo ($page === "/views/user/admin/dashboard.php") ? "text-primaryColor dark:text-primaryColor" : "text-contentColor dark:text-contentColor-dark"?> hover:text-primaryColor dark:hover:text-primaryColor leading-1.8 flex gap-3 text-nowrap">
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         width="16"
@@ -34,8 +34,8 @@
             <li
                 class="py-10px border-b border-borderColor dark:border-borderColor-dark">
                 <a
-                    href="./profile.php"
-                    class="<?php echo ($page === "/views/admin/profile.php") ? "text-primaryColor dark:text-primaryColor" : "text-contentColor dark:text-contentColor-dark"?> hover:text-primaryColor dark:hover:text-primaryColor leading-1.8 flex gap-3 text-nowrap"><svg
+                    href="/views/user/profile.php"
+                    class="<?php echo ($page === "/views/user/profile.php") ? "text-primaryColor dark:text-primaryColor" : "text-contentColor dark:text-contentColor-dark"?> hover:text-primaryColor dark:hover:text-primaryColor leading-1.8 flex gap-3 text-nowrap"><svg
                         xmlns="http://www.w3.org/2000/svg"
                         width="16"
                         height="24"
@@ -54,7 +54,7 @@
             </li>
             <li
                 class="py-10px border-b border-borderColor dark:border-borderColor-dark">
-                <a href="./courses.php" class="<?php echo ($page === "/views/admin/courses.php") ? "text-primaryColor dark:text-primaryColor" : "text-contentColor dark:text-contentColor-dark"?> hover:text-primaryColor dark:hover:text-primaryColor leading-1.8 flex gap-3 text-nowrap">
+                <a href="/views/user/courses.php" class="<?php echo ($page === "/views/user/courses.php") ? "text-primaryColor dark:text-primaryColor" : "text-contentColor dark:text-contentColor-dark"?> hover:text-primaryColor dark:hover:text-primaryColor leading-1.8 flex gap-3 text-nowrap">
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         width="16"
@@ -79,7 +79,7 @@
         <ul>
             <li
                 class="py-10px border-b border-borderColor dark:border-borderColor-dark">
-                <a href="./settings.php" class="<?php echo ($page === "/views/admin/settings.php") ? "text-primaryColor dark:text-primaryColor" : "text-contentColor dark:text-contentColor-dark"?> hover:text-primaryColor dark:hover:text-primaryColor leading-1.8 flex gap-3 text-nowrap">
+                <a href="/views/user/settings.php" class="<?php echo ($page === "/views/user/settings.php") ? "text-primaryColor dark:text-primaryColor" : "text-contentColor dark:text-contentColor-dark"?> hover:text-primaryColor dark:hover:text-primaryColor leading-1.8 flex gap-3 text-nowrap">
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         width="16"
@@ -102,7 +102,7 @@
             <li
                 class="py-10px border-b border-borderColor dark:border-borderColor-dark">
                 <a
-                    href="../auth/logout.php"
+                    href="/views/auth/logout.php"
                     class="text-contentColor dark:text-contentColor-dark hover:text-primaryColor dark:hover:text-primaryColor leading-1.8 flex gap-3 text-nowrap">
                     <svg 
                         xmlns="http://www.w3.org/2000/svg" 

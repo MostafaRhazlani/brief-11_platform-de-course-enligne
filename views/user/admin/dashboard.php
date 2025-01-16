@@ -1,14 +1,14 @@
-<?php include('../layout/_HEADER.php') ?>
+<?php include('../../layout/_HEADER.php') ?>
 <!-- main body -->
 <main class="bg-transparent">
-    <?php include('./banner.php') ?>
+    <?php include('../banner.php') ?>
 
     <!--dashbord menu section -->
     <section>
         <div class="container-fluid-2">
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-30px pt-30px pb-100px">
                 <!-- navigation menu -->
-                <?php include('./navigation-menu.php') ?>
+                <?php include('../navigation-menu.php') ?>
                 <!-- dashboard content -->
                 <div class="lg:col-start-4 lg:col-span-9">
                     <!-- counter -->
@@ -30,7 +30,7 @@
                                 <div class="flex gap-4">
                                     <div>
                                         <img
-                                            src="../../assets/images/counter/counter__1.png"
+                                            src="/assets/images/counter/counter__1.png"
                                             alt="">
                                     </div>
                                     <div>
@@ -50,7 +50,7 @@
                                 <div class="flex gap-4">
                                     <div>
                                         <img
-                                            src="../../assets/images/counter/counter__2.png"
+                                            src="/assets/images/counter/counter__2.png"
                                             alt="">
                                     </div>
                                     <div>
@@ -70,7 +70,7 @@
                                 <div class="flex gap-4">
                                     <div>
                                         <img
-                                            src="../../assets/images/counter/counter__3.png"
+                                            src="/assets/images/counter/counter__3.png"
                                             alt="">
                                     </div>
                                     <div>
@@ -90,7 +90,7 @@
                                 <div class="flex gap-4">
                                     <div>
                                         <img
-                                            src="../../assets/images/counter/counter__4.png"
+                                            src="/assets/images/counter/counter__4.png"
                                             alt="">
                                     </div>
                                     <div>
@@ -110,7 +110,7 @@
                                 <div class="flex gap-4">
                                     <div>
                                         <img
-                                            src="../../assets/images/counter/counter__3.png"
+                                            src="/assets/images/counter/counter__3.png"
                                             alt="">
                                     </div>
                                     <div>
@@ -130,7 +130,7 @@
                                 <div class="flex gap-4">
                                     <div>
                                         <img
-                                            src="../../assets/images/counter/counter__4.png"
+                                            src="/assets/images/counter/counter__4.png"
                                             alt="">
                                     </div>
                                     <div>
@@ -360,4 +360,4 @@
     </section>
 </main>
 
-<?php include('../layout/_FOOTER.php') ?>
+<?php include('../../layout/_FOOTER.php') ?>
