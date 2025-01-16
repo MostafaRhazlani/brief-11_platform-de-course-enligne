@@ -201,6 +201,5 @@
 </main>
 
 <?php
-    session_unset();
     include('../layout/_FOOTER.php') 
 ?>

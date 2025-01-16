@@ -171,6 +171,5 @@
     </section>
 </main>
 
-<?php 
-session_unset();
+<?php
 include('../layout/_FOOTER.php') ?>
