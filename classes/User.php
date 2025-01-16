@@ -1,5 +1,7 @@
 <?php
+if(!isset($_SESSION)) {
     session_start();
+}
     class User {
         protected $username;
         protected $firstName;
@@ -196,6 +198,12 @@
             } else {
                 header('location: ../auth/login.php');
             }
+        }
+
+        public function getUsers() {
+            $sql = "SELECT * FROM users WHERE role = '$this->role'";
+            $stmt = $this->conn->query($sql);
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
     }
 
