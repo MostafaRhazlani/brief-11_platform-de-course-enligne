@@ -38,9 +38,9 @@
                                 All Tags
                             </h2>
 
-                            <form action="" method="POST" class="gap-3 md:justify-end w-full flex justify-center flex-wrap md:flex-nowrap">
+                            <form action="./crudTag/createTag.php" method="POST" class="gap-3 md:justify-end w-full flex justify-center flex-wrap md:flex-nowrap">
                                 <input
-                                    name="email"
+                                    name="nameTag"
                                     type="text"
                                     placeholder="Enter name tag"
                                     class="h-52px w-full leading-52px pl-5 bg-transparent text-sm focus:outline-none text-contentColor dark:text-contentColor-dark border border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 font-medium rounded">
@@ -77,19 +77,21 @@
                                                 </td>
                                                 <td class="flex items-center gap-2 px-5px py-10px md:px-5">
                                                     <div class="text-xs">
-                                                        <form action="" method="post">
+                                                        <form action="./crudTag/deleteTag.php" method="post">
+                                                            <input type="hidden" name="idTag" value="<?php echo $tag['id'] ?>">
                                                             <button class="h-22px inline-block px-7px leading-22px font-bold text-whiteColor hover:text-secondaryColor bg-secondaryColor hover:bg-whiteColor dark:hover:bg-whiteColor-dark border border-secondaryColor rounded-md">
                                                                 Delete
                                                             </button>
                                                         </form>
                                                     </div>
                                                     <div class="text-xs">
-                                                        <form action="" method="post" class="flex items-center">
+                                                        <form action="./crudTag/updateTag.php" method="post" class="flex items-center">
                                                             <button class="h-22px inline-block px-7px leading-22px font-bold text-whiteColor hover:text-primaryColor bg-primaryColor hover:bg-whiteColor dark:hover:bg-whiteColor-dark border border-primaryColor rounded-md mr-2">
                                                                 Edit
                                                             </button>
+                                                            <input type="hidden" name="idTag" value="<?php echo $tag['id'] ?>">
                                                             <input
-                                                                name="nameCategory"
+                                                                name="nameTag"
                                                                 value="<?php echo $tag['nameTag'] ?>"
                                                                 type="text"
                                                                 placeholder="name tag"
