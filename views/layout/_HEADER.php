@@ -1,8 +1,10 @@
-<?php session_start(); ?>
+<?php 
+    if(!isset($_SESSION)) {
+        session_start();
+    } 
+?>
 <!DOCTYPE html>
 <html lang="en">
-
-<!-- Mirrored from html.themewin.com/edurcok-preview-tailwind/edurock/login.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 12 Jan 2025 03:16:38 GMT -->
 
 <head>
     <meta charset="UTF-8">
@@ -227,11 +229,13 @@
                                         </div>
                                     </div>
                                 </li>
-                                <li class="hidden lg:block">
-                                    <a
-                                        href="/views/auth/login.php"
-                                        class="text-size-12 2xl:text-size-15 px-15px py-2 text-blackColor hover:text-whiteColor bg-whiteColor block hover:bg-primaryColor border border-borderColor1 rounded-standard font-semibold mr-[7px] 2xl:mr-15px dark:text-blackColor-dark dark:bg-whiteColor-dark dark:hover:bg-primaryColor dark:hover:text-whiteColor dark:hover:border-primaryColor"><i class="icofont-user-alt-5"></i></a>
-                                </li>
+                                <?php if(!$_SESSION['user']) { ?>
+                                    <li class="hidden lg:block">
+                                        <a
+                                            href="/views/auth/login.php"
+                                            class="text-size-12 2xl:text-size-15 px-15px py-2 text-blackColor hover:text-whiteColor bg-whiteColor block hover:bg-primaryColor border border-borderColor1 rounded-standard font-semibold mr-[7px] 2xl:mr-15px dark:text-blackColor-dark dark:bg-whiteColor-dark dark:hover:bg-primaryColor dark:hover:text-whiteColor dark:hover:border-primaryColor"><i class="icofont-user-alt-5"></i></a>
+                                    </li>
+                                <?php } ?>
                                 <li class="hidden lg:block">
                                     <a
                                         href="#"
