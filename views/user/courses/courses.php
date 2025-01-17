@@ -70,8 +70,7 @@
                             </div>
                             <div class="tab-contents">
                                 <div class="transition-all duration-300">
-                                    <div
-                                        class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-30px">
+                                    <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-30px">
 
                                         <?php if(isset($resultCourses)) { ?>
                                             <?php foreach($resultCourses as $course) { ?>
@@ -142,19 +141,6 @@
                                                                             <del class="text-base font-semibold text-greencolor">Free</del>
                                                                         </span>
                                                                     </div>
-                                                                    <div class="text-start ">
-                                                                        <i
-                                                                            class="icofont-star text-size-15 text-yellow"></i>
-                                                                        <i
-                                                                            class="icofont-star text-size-15 text-yellow"></i>
-                                                                        <i
-                                                                            class="icofont-star text-size-15 text-yellow"></i>
-                                                                        <i
-                                                                            class="icofont-star text-size-15 text-yellow"></i>
-                                                                        <i
-                                                                            class="icofont-star text-size-15 text-yellow"></i>
-                                                                        <span class="text-xs text-lightGrey6">(44)</span>
-                                                                    </div>
                                                                 </div>
                                                                 <!-- author and rating-->
                                                                 <div class="pt-15px border-t border-borderColor flex justify-between">
@@ -167,16 +153,18 @@
                                                                         </a>
                                                                     </div>
                                                                     <div>
-                                                                        <?php if($course['statusCourse'] == 0) { ?>
-                                                                            <div>
-                                                                                <form action="./acceptCourse.php" method="POST">
-                                                                                    <input type="hidden" name="idCourse" value="<?php echo $course['id'] ?>">
-                                                                                    <input type="hidden" name="accept" value="1">
-                                                                                    <button class="text-size-15 inline-block px-25px leading-22px font-bold text-whiteColor hover:text-greencolor bg-greencolor hover:bg-whiteColor dark:hover:bg-whiteColor-dark border border-greencolor rounded">
-                                                                                        Accept
-                                                                                    </button>
-                                                                                </form>
-                                                                            </div>
+                                                                        <?php if($_SESSION['user']['role'] === 'admin') { ?>
+                                                                            <?php if($course['statusCourse'] == 0) { ?>
+                                                                                <div>
+                                                                                    <form action="./acceptCourse.php" method="POST">
+                                                                                        <input type="hidden" name="idCourse" value="<?php echo $course['id'] ?>">
+                                                                                        <input type="hidden" name="accept" value="1">
+                                                                                        <button class="text-size-15 inline-block px-25px leading-22px font-bold text-whiteColor hover:text-greencolor bg-greencolor hover:bg-whiteColor dark:hover:bg-whiteColor-dark border border-greencolor rounded">
+                                                                                            Accept
+                                                                                        </button>
+                                                                                    </form>
+                                                                                </div>
+                                                                            <?php } ?>
                                                                         <?php } ?>
                                                                         <div>
                                                                             <form action="./deleteCourse.php" method="POST">
