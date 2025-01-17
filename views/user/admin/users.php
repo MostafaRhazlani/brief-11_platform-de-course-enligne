@@ -1,4 +1,5 @@
 <?php
+    require_once __DIR__ . '/../../classes/Role.php';   
     require_once __DIR__ . '/../../../classes/Database.php';
     require_once __DIR__ . '/../../../classes/User.php';
 
@@ -71,73 +72,70 @@
                             </div>
                             <div class="tab-contents">
                                 <div class="transition-all duration-300">
-                                    <!-- main content -->
-                                    <div class="overflow-auto">
-                                        <table class="w-full text-left">
-                                            <thead
-                                                class="text-sm md:text-base text-blackColor dark:text-blackColor-dark bg-lightGrey5 dark:bg-whiteColor-dark leading-1.8 md:leading-1.8">
-                                                <tr>
-                                                    <th class="px-5px py-10px md:px-5">ID</th>
-                                                    <th class="px-5px py-10px md:px-5">Image</th>
-                                                    <th class="px-5px py-10px md:px-5">Username</th>
-                                                    <th class="px-5px py-10px md:px-5">Full Name</th>
-                                                    <th class="px-5px py-10px md:px-5">Email</th>
-                                                    <th class="px-5px py-10px md:px-5">Role</th>
-                                                    <th class="px-5px py-10px md:px-5">Date Joined</th>
-                                                    <th class="px-5px py-10px md:px-5">Status</th>
-                                                    <th class="px-5px py-10px md:px-5">Actions</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody
-                                                class="text-size-13 md:text-base text-contentColor dark:text-contentColor-dark font-normal">
-                                                <?php if(isset($resultUsers)) { ?>
-                                                    <?php $index = 0; foreach($resultUsers as $user) { ?>
-                                                        <?php if($_SESSION['user']['id'] !== $user['id']) { ?>
-                                                            <tr
-                                                                class="leading-1.8 md:leading-1.8 bg-lightGrey5 dark:bg-whiteColor-dark">
-                                                                <th
-                                                                    class="px-5px py-10px md:px-5 font-normal text-wrap">
-                                                                    <p class="text-blackColor dark:text-blackColor-dark">
-                                                                        #<?php echo $index += 1 ?>
-                                                                    </p>
-                                                                </th>
-                                                                <td class="px-5px py-10px md:px-5">
-                                                                    <img class="w-34px h-34px rounded-full" src="../../../assets/images/<?php echo $user['imageProfile'] ?>" alt="">
-                                                                </td>
-                                                                <td class="px-5px py-10px md:px-5">
-                                                                    <p><?php echo $user['username'] ?></p>
-                                                                </td>
-                                                                <td class="px-5px py-10px md:px-5">
-                                                                    <p class="w-[140px]"><?php echo "{$user['firstName']} " . "{$user['lastName']}" ?></p>
-                                                                </td>
-                                                                <td class="px-5px py-10px md:px-5">
-                                                                    <p><?php echo $user['email'] ?></p>
-                                                                </td>
-                                                                <td class="px-5px py-10px md:px-5">
-                                                                    <p><?php echo $user['role'] ?></p>
-                                                                </td>
-                                                                <td class="px-5px py-10px md:px-5">
-                                                                    <p class="w-[180px]"><?php echo $user['dateJoined'] ?></p>
-                                                                </td>
-                                                                <td class="px-5px py-10px md:px-5">
-                                                                    <p><?php echo ($user['status'] == 1) ? '<span class="text-xs h-22px inline-block px-7px leading-22px font-bold text-whiteColor bg-primaryColor rounded-md">Active</span>' : '<span class="text-xs h-22px inline-block px-7px leading-22px font-bold text-whiteColor bg-greencolor2 rounded-md">Desactive</span>' ?></p>
-                                                                </td>
-                                                                <td class="px-5px py-10px md:px-5">
-                                                                    <div class="text-xs">
-                                                                        <form action="" method="post">
-                                                                            <input type="hidden" name="idTag" value="">
-                                                                            <button class="h-22px inline-block px-7px leading-22px font-bold text-whiteColor hover:text-secondaryColor bg-secondaryColor hover:bg-whiteColor dark:hover:bg-whiteColor-dark border border-secondaryColor rounded-md">
-                                                                                Delete
-                                                                            </button>
-                                                                        </form>
+                                    <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-30px">
+                                        <?php if(isset($resultUsers)) { ?>
+                                            <?php foreach($resultUsers as $user) { ?>
+                                                <?php if($_SESSION['user']['id'] !== $user['id']) { ?>
+                                                    <!-- card -->
+                                                    <div class="group">
+                                                        <div class="tab-content-wrapper">
+                                                            <div
+                                                                class="p-15px bg-whiteColor shadow-brand dark:bg-darkdeep3-dark dark:shadow-brand-dark">
+                                                                <!-- card image -->
+                                                                <div class="relative mb-4">
+                                                                    <a
+                                                                        href="../../course-details.html"
+                                                                        class="w-full overflow-hidden rounded flex justify-center">
+                                                                        <img
+                                                                            src="../../../assets/images/<?php echo $user['imageProfile'] ?>"
+                                                                            alt=""
+                                                                            class="w-90px h-90px rounded-full">
+                                                                    </a>
+                                                                </div>
+                                                                <!-- card content -->
+                                                                <div>
+                                                                    <div class="mb-10px flex flex-col text-center">
+                                                                        <a
+                                                                            href="#"
+                                                                            class="text-xl font-semibold text-blackColor font-hind dark:text-blackColor-dark hover:text-primaryColor dark:hover:text-primaryColor">
+                                                                            <?php echo "{$user['firstName']} " . "{$user['lastName']}" ?>
+                                                                        </a>
+                                                                        <span class="text-sm dark:text-blackColor-dark"><?php echo $user['username'] ?></span>
                                                                     </div>
-                                                                </td>
-                                                            </tr>
-                                                        <?php } ?>
-                                                    <?php } ?>
+                                                                    <!-- action -->
+                                                                    <?php if($_SESSION['user']['role'] === 'admin') { ?>
+                                                                        <div class="pt-15px border-t border-borderColor flex justify-between items-center">
+                                                                            <div>
+                                                                                <form action="./statusUser.php" method="POST">
+                                                                                    <input type="hidden" name="idCourse" value="<?php echo $course['id'] ?>">
+                                                                                    <?php if($user['status'] == 1) { ?>
+                                                                                        <button class="w-full text-size-15 inline-block px-25px leading-22px font-bold text-whiteColor hover:text-greencolor bg-greencolor hover:bg-whiteColor dark:hover:bg-whiteColor-dark border border-greencolor rounded">
+                                                                                            Active
+                                                                                        </button>
+                                                                                    <?php } else { ?>
+                                                                                        <button class="w-full text-size-15 inline-block px-25px leading-22px font-bold text-whiteColor hover:text-primaryColor bg-primaryColor hover:bg-whiteColor dark:hover:bg-whiteColor-dark border border-primaryColor rounded">
+                                                                                            Desactive
+                                                                                        </button>
+                                                                                    <?php } ?>
+                                                                                </form>
+                                                                            </div>
+                                                                            <div>
+                                                                                <form action="./deleteCourse.php" method="POST">
+                                                                                    <input type="hidden" name="idCourse" value="<?php echo $course['id'] ?>">
+                                                                                    <button class="w-full text-size-15 inline-block px-25px leading-22px font-bold text-whiteColor hover:text-secondaryColor bg-secondaryColor hover:bg-whiteColor dark:hover:bg-whiteColor-dark border border-secondaryColor rounded">
+                                                                                        Delete
+                                                                                    </button>
+                                                                                </form>
+                                                                            </div>
+                                                                        </div>
+                                                                    <?php } ?>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 <?php } ?>
-                                            </tbody>
-                                        </table>
+                                            <?php } ?>
+                                        <?php } ?>
                                     </div>
                                 </div>
                             </div>

@@ -1,3 +1,4 @@
+<?php require_once __DIR__ . '/../../../classes/Role.php'; ?>
 <?php include('../../layout/_HEADER.php') ?>
 <!-- main body -->
 <main class="bg-transparent">
