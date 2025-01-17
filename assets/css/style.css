@@ -9165,3 +9165,36 @@ video {
     padding-top: 9.6875rem;
   }
 }
+
+.profile-picture {
+  opacity: 0.75;
+  height: 400px;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+
+  /* default image */
+  background: url('/assets/images/defaultCourse.jpeg');
+
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  box-shadow: 0 8px 6px -6px black;
+}
+
+.file-uploader {
+  /* make it invisible */
+  opacity: 0;
+  /* make it take the full height and width of the parent container */
+  height: 100%;
+  width: 100%;
+  cursor: pointer;
+  /* make it absolute */
+  position: absolute;
+  top: 0%;
+  left: 0%;
+}
+
+.object-cover {
+  object-fit: cover;
+}

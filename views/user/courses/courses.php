@@ -85,7 +85,7 @@
                                                                     href="../../course-details.html"
                                                                     class="w-full overflow-hidden rounded">
                                                                     <img
-                                                                        src="../../../assets/images/grid/grid_2.png"
+                                                                        src="../../../assets/images/grid/<?php echo $course['image'] ?>"
                                                                         alt=""
                                                                         class="w-full transition-all duration-300 group-hover:scale-110">
                                                                 </a>
@@ -134,12 +134,14 @@
                                                                 </a>
                                                                 <!-- price -->
                                                                 <div
-                                                                    class="text-lg font-semibold text-primaryColor flex justify-between font-inter mb-4">
-                                                                    <div>
-                                                                        $<?php echo $course['price'] ?>
-                                                                        <span class="ml-6">
-                                                                            <del class="text-base font-semibold text-greencolor">Free</del>
-                                                                        </span>
+                                                                    class="text-lg font-semibold text-primaryColor flex font-inter mb-4">
+                                                                    <span> $<?php echo $course['price'] ?></span>
+                                                                    <div class="ml-6">
+                                                                        <?php if($course['payStatus'] === 0) { ?>
+                                                                            <span class="text-base font-semibold text-greencolor">Free</span>
+                                                                        <?php } else { ?>
+                                                                            <span class="text-base font-semibold text-secondaryColor">Premuim</span>
+                                                                        <?php } ?>
                                                                     </div>
                                                                 </div>
                                                                 <!-- author and rating-->

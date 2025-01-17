@@ -72,5 +72,21 @@ smoothScroll();
 
 })
 
+function uploadImage(event) {
+  const file = event.target.files[0]; // Get the selected file
+  const preview = document.getElementById("imagePreview");
+
+  if (file) {
+      const reader = new FileReader();
+      reader.onload = function(e) {
+          preview.src = e.target.result; // Set the image source to the file's data URL
+          preview.style.display = "block"; // Display the image
+      };
+      reader.readAsDataURL(file); // Read the file as a data URL
+  } else {
+      preview.src = "#";
+      preview.style.display = "none";
+  }
+}
 
 

@@ -8,10 +8,12 @@
         private $statusCourse;
         private $idTeacher;
         private $idCategory;
+        private $image;
+        private $payStatus;
         private $conn;
         private $errors;
 
-        public function __construct($conn, $id = 0, $title = "", $titleDescription = "", $description = "", $price = "", $statusCourse = "", $idTeacher = "", $idCategory = "",) {
+        public function __construct($conn, $id = 0, $title = "", $titleDescription = "", $description = "", $price = "", $statusCourse = "", $idTeacher = "", $idCategory = "", $image = "", $payStatus = "") {
             $this->conn = $conn;
             $this->id = $id;
             $this->title = $title;
@@ -21,6 +23,8 @@
             $this->statusCourse = $statusCourse;
             $this->idTeacher = $idTeacher;
             $this->idCategory = $idCategory;
+            $this->image = $image;
+            $this->payStatus = $payStatus;
         }
 
         public function getId() {
@@ -55,6 +59,14 @@
             return $this->idCategory;
         }
 
+        public function getImage() {
+            return $this->image;
+        }
+
+        public function getPayStatus() {
+            return $this->payStatus;
+        }
+
         public function setTitle($title) {
             $this->title = $title;
         }
@@ -83,6 +95,14 @@
             $this->idCategory = $idCategory;
         }
 
+        public function setImage($image) {
+            $this->image = $image;
+        }
+        
+        public function setPayStatus($payStatus) {
+            $this->payStatus = $payStatus;
+        }
+
         public function getCourses() {
 
             $sql = "SELECT courses.*, nameCategory, firstName, lastName, imageProfile
@@ -105,6 +125,22 @@
                     WHERE statusCourse = '$this->statusCourse'";
             $stmt = $this->conn->query($sql);
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        }
+
+        public function createCourse() {
+            $sql = "INSERT INTO courses(title, titleDescription, description, price, statusCourse, idTeacher, idCategory, image, payStatus) VALUES(?,?,?,?,?,?,?,?,?)";
+            $stmt = $this->conn->prepare($sql);
+            $stmt->bindValue(1, $this->title, PDO::PARAM_STR);
+            $stmt->bindValue(2, $this->titleDescription, PDO::PARAM_STR);
+            $stmt->bindValue(3, $this->description, PDO::PARAM_STR);
+            $stmt->bindValue(4, $this->price, PDO::PARAM_INT);
+            $stmt->bindValue(5, $this->statusCourse, PDO::PARAM_BOOL);
+            $stmt->bindValue(6, $this->idTeacher, PDO::PARAM_INT);
+            $stmt->bindValue(7, $this->idCategory, PDO::PARAM_INT);
+            $stmt->bindValue(8, $this->image, PDO::PARAM_STR);
+            $stmt->bindValue(9, $this->payStatus, PDO::PARAM_BOOL);
+
+            return $stmt->execute();
         }
 
         public function acceptCourse() {
