@@ -162,11 +162,13 @@
                                         Courses
                                     </a>
                                 </li>
-                                <li class="nav-item group relative">
-                                    <a href="/views/user/admin/dashboard.php" class="px-5 lg:px-10px 2xl:px-15px 3xl:px-5 py-10 lg:py-5 2xl:py-30px 3xl:py-10 leading-sm 2xl:leading-lg text-base lg:text-sm 2xl:text-base font-semibold block group-hover:text-primaryColor dark:text-whiteColor">
-                                        Dashboard
-                                    </a>
-                                </li>
+                                <?php if (isset($_SESSION['user'])) { ?>
+                                    <li class="nav-item group relative">
+                                        <a href="/views/user/admin/dashboard.php" class="px-5 lg:px-10px 2xl:px-15px 3xl:px-5 py-10 lg:py-5 2xl:py-30px 3xl:py-10 leading-sm 2xl:leading-lg text-base lg:text-sm 2xl:text-base font-semibold block group-hover:text-primaryColor dark:text-whiteColor">
+                                            Dashboard
+                                        </a>
+                                    </li>
+                                <?php } ?>
                             </ul>
                         </div>
                         <!-- navbar right -->
@@ -229,7 +231,7 @@
                                         </div>
                                     </div>
                                 </li>
-                                <?php if(!$_SESSION['user']) { ?>
+                                <?php if (!isset($_SESSION['user'])) { ?>
                                     <li class="hidden lg:block">
                                         <a
                                             href="/views/auth/login.php"
