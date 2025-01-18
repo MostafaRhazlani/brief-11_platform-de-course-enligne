@@ -178,13 +178,7 @@
                                                     </div>
                                                     <div class="mb-15px">
                                                         <label class="mb-3 block font-semibold">About Course</label>
-                                                        <textarea
-                                                            name="description"
-                                                            class="w-full py-10px px-5 text-sm text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md"
-    
-                                                            cols="30"
-                                                            rows="10">
-                                                        </textarea>
+                                                        <textarea name="description" class="w-full py-10px px-5 text-sm text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md" cols="30" rows="10"></textarea>
                                                     </div>
                                                 <!-- </form> -->
                                             </div>
