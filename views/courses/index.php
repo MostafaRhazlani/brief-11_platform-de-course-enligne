@@ -1,3 +1,17 @@
+<?php
+    require_once __DIR__ . '/../../classes/Database.php';
+    require_once __DIR__ . '/../../classes/Cource.php';
+
+    $db = new Database();
+    $conn = $db->connect();
+
+    $courses = new Course($conn);
+
+    $courses->setStatusCourse(1);
+    $resultCourses = $courses->getCoursesByStatus();
+
+?>
+
 <?php include('../layout/_HEADER.php') ?>
     <!-- main body -->
     <main class="bg-transparent">
@@ -149,102 +163,118 @@
                             <!-- grid ordered cards -->
                             <div
                                 class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-30px">
-                                <!-- card 1 -->
-                                <div class="group">
-                                    <div class="tab-content-wrapper" data-aos="fade-up">
-                                        <div
-                                            class="p-15px bg-whiteColor shadow-brand dark:bg-darkdeep3-dark dark:shadow-brand-dark">
-                                            <!-- card image -->
-                                            <div class="relative mb-4">
-                                                <a
-                                                    href="course-details.html"
-                                                    class="w-full overflow-hidden rounded">
-                                                    <img
-                                                        src="../../assets/images/grid/grid_2.png"
-                                                        alt=""
-                                                        class="w-full transition-all duration-300 group-hover:scale-110">
-                                                </a>
+                                <?php if(isset($resultCourses)) { ?>
+                                    <?php foreach($resultCourses as $course) { ?>
+                                        <!-- card -->
+                                        <div class="group">
+                                            <div class="tab-content-wrapper">
                                                 <div
-                                                    class="absolute left-0 top-1 flex justify-between w-full items-center px-2">
-                                                    <div>
-                                                        <p
-                                                            class="text-xs text-whiteColor px-4 py-[3px] bg-blue rounded font-semibold">
-                                                            Mechanical
-                                                        </p>
-                                                    </div>
-                                                    <a
-                                                        class="text-white bg-black bg-opacity-15 rounded hover:bg-primaryColor"
-                                                        href="#"><i
-                                                            class="icofont-heart-alt text-base py-1 px-2"></i></a>
-                                                </div>
-                                            </div>
-                                            <!-- card content -->
-                                            <div>
-                                                <div class="grid grid-cols-2 mb-15px">
-                                                    <div class="flex items-center">
-                                                        <div>
-                                                            <i
-                                                                class="icofont-book-alt pr-5px text-primaryColor text-lg"></i>
-                                                        </div>
-                                                        <div>
-                                                            <span
-                                                                class="text-sm text-black dark:text-blackColor-dark">29 Lesson</span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="flex items-center">
-                                                        <div>
-                                                            <i
-                                                                class="icofont-clock-time pr-5px text-primaryColor text-lg"></i>
-                                                        </div>
-                                                        <div>
-                                                            <span
-                                                                class="text-sm text-black dark:text-blackColor-dark">2 hr 10 min</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <a
-                                                    href="./detailCourse.php"
-                                                    class="text-lg font-semibold text-blackColor mb-10px font-hind dark:text-blackColor-dark hover:text-primaryColor dark:hover:text-primaryColor">
-                                                    Nidnies course to under stand about softwere
-                                                </a>
-                                                <!-- price -->
-                                                <div
-                                                    class="text-lg font-semibold text-primaryColor font-inter mb-4">
-                                                    $32.00
-                                                    <del class="text-sm text-lightGrey4 font-semibold">/ $67.00</del>
-                                                    <span class="ml-6"><del
-                                                            class="text-base font-semibold text-greencolor">Free</del></span>
-                                                </div>
-                                                <!-- author and rating-->
-                                                <div
-                                                    class="grid grid-cols-1 md:grid-cols-2 pt-15px border-t border-borderColor">
-                                                    <div>
+                                                    class="p-15px bg-whiteColor shadow-brand dark:bg-darkdeep3-dark dark:shadow-brand-dark">
+                                                    <!-- card image -->
+                                                    <div class="relative mb-4">
                                                         <a
-                                                            href="instructor-details.html"
-                                                            class="text-base font-bold font-hind flex items-center hover:text-primaryColor dark:text-blackColor-dark dark:hover:text-primaryColor"><img
-                                                                class="w-[30px] h-[30px] rounded-full mr-15px"
-                                                                src="../../assets/images/grid/grid_small_2.jpg"
-                                                                alt="">Rinis Jhon
+                                                            href="../../course-details.html"
+                                                            class="w-full overflow-hidden rounded">
+                                                            <img
+                                                                src="../../../assets/images/grid/<?php echo $course['image'] ?>"
+                                                                alt=""
+                                                                class="w-full transition-all duration-300 group-hover:scale-110">
                                                         </a>
+                                                        <div
+                                                            class="absolute left-0 top-1 flex justify-between w-full items-center px-2">
+                                                            <div>
+                                                                <p
+                                                                    class="text-xs text-whiteColor px-4 py-[3px] bg-blue rounded font-semibold">
+                                                                    <?php echo $course['nameCategory'] ?>
+                                                                </p>
+                                                            </div>
+                                                            <a
+                                                                class="text-white bg-black bg-opacity-15 rounded hover:bg-primaryColor"
+                                                                href="#"><i
+                                                                    class="icofont-heart-alt text-base py-1 px-2"></i></a>
+                                                        </div>
                                                     </div>
-                                                    <div class="text-start md:text-end">
-                                                        <i
-                                                            class="icofont-star text-size-15 text-yellow"></i>
-                                                        <i
-                                                            class="icofont-star text-size-15 text-yellow"></i>
-                                                        <i
-                                                            class="icofont-star text-size-15 text-yellow"></i>
-                                                        <i
-                                                            class="icofont-star text-size-15 text-yellow"></i>
-                                                        <i
-                                                            class="icofont-star text-size-15 text-yellow"></i>
-                                                        <span class="text-xs text-lightGrey6">(44)</span>
+                                                    <!-- card content -->
+                                                    <div>
+                                                        <div class="grid grid-cols-2 mb-15px">
+                                                            <div class="flex items-center">
+                                                                <div>
+                                                                    <i
+                                                                        class="icofont-book-alt pr-5px text-primaryColor text-lg"></i>
+                                                                </div>
+                                                                <div>
+                                                                    <span
+                                                                        class="text-sm text-black dark:text-blackColor-dark">29 Lesson</span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="flex items-center">
+                                                                <div>
+                                                                    <i
+                                                                        class="icofont-clock-time pr-5px text-primaryColor text-lg"></i>
+                                                                </div>
+                                                                <div>
+                                                                    <span
+                                                                        class="text-sm text-black dark:text-blackColor-dark">2 hr 10 min</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <a
+                                                            href="../../course-details.html"
+                                                            class="text-xl font-semibold text-blackColor mb-10px font-hind dark:text-blackColor-dark hover:text-primaryColor dark:hover:text-primaryColor">
+                                                            <?php echo $course['title'] ?>
+                                                        </a>
+                                                        <!-- price -->
+                                                        <div
+                                                            class="text-lg font-semibold text-primaryColor flex font-inter mb-4">
+                                                            <span> $<?php echo $course['price'] ?></span>
+                                                            <div class="ml-6">
+                                                                <?php if($course['payStatus'] === 0) { ?>
+                                                                    <span class="text-base font-semibold text-greencolor">Free</span>
+                                                                <?php } else { ?>
+                                                                    <span class="text-base font-semibold text-secondaryColor">Premuim</span>
+                                                                <?php } ?>
+                                                            </div>
+                                                        </div>
+                                                        <!-- author and rating-->
+                                                        <div class="pt-15px border-t border-borderColor flex justify-between">
+                                                            <div>
+                                                                <a
+                                                                    href="instructor-details.html"
+                                                                    class="text-base w-full font-bold font-hind flex items-center hover:text-primaryColor dark:text-blackColor-dark dark:hover:text-primaryColor">
+                                                                    <img class="w-[30px] h-[30px] rounded-full mr-10px" src="../../../assets/images/<?php echo $course['imageProfile'] ?>" alt="">
+                                                                    <?php echo "{$course['firstName']} " . "{$course['lastName']}" ?>
+                                                                </a>
+                                                            </div>
+                                                            <div>
+                                                                <?php if($_SESSION['user']['role'] === 'admin') { ?>
+                                                                    <?php if($course['statusCourse'] == 0) { ?>
+                                                                        <div>
+                                                                            <form action="./acceptCourse.php" method="POST">
+                                                                                <input type="hidden" name="idCourse" value="<?php echo $course['id'] ?>">
+                                                                                <input type="hidden" name="accept" value="1">
+                                                                                <button class="text-size-15 inline-block px-25px leading-22px font-bold text-whiteColor hover:text-greencolor bg-greencolor hover:bg-whiteColor dark:hover:bg-whiteColor-dark border border-greencolor rounded">
+                                                                                    Accept
+                                                                                </button>
+                                                                            </form>
+                                                                        </div>
+                                                                    <?php } ?>
+                                                                <?php } ?>
+                                                                <div>
+                                                                    <form action="./deleteCourse.php" method="POST">
+                                                                        <input type="hidden" name="idCourse" value="<?php echo $course['id'] ?>">
+                                                                        <button class="w-full text-size-15 inline-block px-25px leading-22px font-bold text-whiteColor hover:text-secondaryColor bg-secondaryColor hover:bg-whiteColor dark:hover:bg-whiteColor-dark border border-secondaryColor rounded">
+                                                                            Delete
+                                                                        </button>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </div>
+                                    <?php } ?>
+                                <?php } ?>
                             </div>
                             <!-- list ordered cards -->
                             <div class="hidden opacity-0 transition-all duration-300">
