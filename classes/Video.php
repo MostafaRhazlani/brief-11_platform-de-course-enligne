@@ -55,14 +55,14 @@
                     if ($fileSize < 50000000) {
                         $file = explode(".", $videoName);
                         $end = strtolower(end($file));
+                        $fileName = basename($videoName, ".$end");
                         $allowed_ext = array("mp4", "webm", "ogg");
             
                         if (in_array($end, $allowed_ext)) {
                             $uniqueName = uniqid();
-                            $location = __DIR__ . "/../assets/videos/" . $uniqueName . "." . $end;
+                            $location = __DIR__ . "/../assets/videos/" . $fileName . "_" . $uniqueName . "." . $end;
                             
-                            $newName = $uniqueName . "." . $end;
-                            $this->setNameVideo($newName);
+                            $newName = $fileName . "_" . $uniqueName . "." . $end;
 
                             if (move_uploaded_file($tempName, $location)) {
                                 // Insert data into the database
@@ -83,6 +83,12 @@
             } else {
                 return "error";
             }
+        }
+
+        public function getVideosCourse() {
+            $sql = "SELECT * FROM videos WHERE idCourse = $this->idCourse";
+            $stmt = $this->conn->query($sql);
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
         
     }
