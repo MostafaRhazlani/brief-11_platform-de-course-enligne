@@ -114,6 +114,16 @@
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
 
+        public function getCourse() {
+            $sql = "SELECT courses.*, nameCategory, firstName, lastName, imageProfile
+                    FROM courses 
+                    JOIN categories ON categories.id = courses.idCategory
+                    JOIN users ON users.id = courses.idTeacher
+                    WHERE courses.id = $this->id";
+            $stmt = $this->conn->query($sql);
+            return $stmt->fetch();
+        }
+
         public function lastCourseAdded() {
 
             $result = $this->conn->query("SELECT id FROM courses ORDER BY id DESC LIMIT 1");
