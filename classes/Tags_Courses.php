@@ -31,6 +31,15 @@
             $this->idCourse = $idCourse;
         }
 
+        public function getTagsCourse() {
+            $sql = "SELECT * FROM tags_courses 
+                    JOIN tags ON tags.id = tags_courses.idTag 
+                    WHERE idCourse = $this->idCourse";
+            $stmt = $this->conn->query($sql);
+
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        }
+
         public function insertTagsOFCourse() {
             $sql = "INSERT INTO tags_courses (idCourse, idTag) VALUES(?,?)";
             $stmt = $this->conn->prepare($sql);
