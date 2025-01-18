@@ -128,7 +128,7 @@
                                                                     </div>
                                                                 </div>
                                                                 <a
-                                                                    href="../../course-details.html"
+                                                                    href="../../courses/detailCourse.php?idCourse=<?php echo $course['id'] ?>"
                                                                     class="text-xl font-semibold text-blackColor mb-10px font-hind dark:text-blackColor-dark hover:text-primaryColor dark:hover:text-primaryColor">
                                                                     <?php echo $course['title'] ?>
                                                                 </a>
