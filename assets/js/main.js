@@ -89,4 +89,22 @@ function uploadImage(event) {
   }
 }
 
+const uploadVideo = document.querySelector('.upload-video');
+const linkVideos = document.querySelector('.link-videos');
+
+
+let index = 0;
+uploadVideo.addEventListener('input', (event) => {
+  const files = event.target.files;
+
+  for (const file of files) {
+    linkVideos.innerHTML += `
+      <div class="mb-3 block">
+          Link ${index += 1}:
+          <span class="hover:text-primaryColor">${file.name}</span>
+      </div>
+    `;
+  }
+});
+
 

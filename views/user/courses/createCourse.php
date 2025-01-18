@@ -1,13 +1,16 @@
 <?php
     require_once __DIR__ . '/../../../classes/Database.php'; 
     require_once __DIR__ . '/../../../classes/Category.php';
+    require_once __DIR__ . '/../../../classes/Tag.php';
     
     $db = new Database();
     $conn =$db->connect();
 
     $categories = new Category($conn);
-
     $allGategories = $categories->getAllCategories();
+
+    $tags = new Tag($conn);
+    $allTags = $tags->getAllTags();
 
 
 ?>
@@ -124,71 +127,36 @@
                                                         <div>
                                                             <div
                                                                 class="grid grid-cols-1 md:grid-cols-2 gap-30px">
+                                                                
                                                                 <div>
-                                                                    <label
-                                                                        class="text-xs uppercase text-placeholder block font-semibold text-opacity-50 leading-1.8">Categories</label>
-                                                                    <div
-                                                                        class="bg-whiteColor relative rounded-md">
-                                                                        <select
-                                                                            name="idCategory"
-                                                                            class="text-base bg-transparent text-blackColor2 w-full p-13px pr-30px focus:outline-none block appearance-none relative z-20 focus:shadow-select rounded-md">
-                                                                            <option value="" selected>Select</option>
-                                                                            <?php if(isset($allGategories)) { ?>
-                                                                                <?php foreach($allGategories as $category) { ?>
-                                                                                    <option value="<?php echo $category['id'] ?>"><?php echo $category['nameCategory'] ?></option>
-                                                                                <?php } ?>
+                                                                    <label class="text-xs uppercase text-placeholder font-semibold text-opacity-50 leading-1.8 block">Categories</label>
+                                                                    <select name="idCategory" id="" class="w-full h-52px leading-52px pl-5 bg-transparent text-sm focus:outline-none focus:shadow-select text-contentColor appearance-none border border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 rounded-md">
+                                                                        <option value="" selected>Select</option>
+                                                                        <?php if(isset($allGategories)) { ?>
+                                                                            <?php foreach($allGategories as $category) { ?>
+                                                                                <option value="<?php echo $category['id'] ?>"><?php echo $category['nameCategory'] ?></option>
                                                                             <?php } ?>
-                                                                        </select>
-                                                                        <i
-                                                                            class="icofont-simple-down absolute top-1/2 right-3 -translate-y-1/2 block text-lg z-10"></i>
-                                                                    </div>
+                                                                        <?php } ?>
+                                                                    </select>
                                                                 </div>
                                                                 <div>
-                                                                    <label
-                                                                        class="text-xs uppercase text-placeholder block font-semibold text-opacity-50 leading-1.8">SHORT BY OFFER</label>
-                                                                    <div
-                                                                        class="bg-whiteColor relative rounded-md">
-                                                                        <select
-                                                                            name="payStatus"
-                                                                            class="text-base bg-transparent text-blackColor2 w-full p-13px pr-30px focus:outline-none block appearance-none relative z-20 focus:shadow-select rounded-md">
-                                                                            <option selected="1">premium</option>
-                                                                            <option value="0">Free</option>
-                                                                        </select>
-                                                                        <i
-                                                                            class="icofont-simple-down absolute top-1/2 right-3 -translate-y-1/2 block text-lg z-10"></i>
-                                                                    </div>
+                                                                    <label class="text-xs uppercase text-placeholder font-semibold text-opacity-50 leading-1.8 block">SHORT BY OFFER</label>
+                                                                    <select name="payStatus" id="" class="w-full h-52px leading-52px pl-5 bg-transparent text-sm focus:outline-none focus:shadow-select text-contentColor appearance-none border border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 rounded-md">
+                                                                        <option class="text-black" value="1">Premuim</option>
+                                                                        <option value="0">Free</option>
+                                                                    </select>
                                                                 </div>
                                                             </div>
+                                                            
                                                             <div class="mt-5">
-                                                                <label
-                                                                    class="text-xs uppercase text-placeholder block font-semibold text-opacity-50 leading-1.8">Tags</label>
-                                                                <div
-                                                                    class="bg-whiteColor relative rounded-md">
-                                                                    <select
-                                                                        name="idTag[]"
-                                                                        multiple
-                                                                        class="text-base bg-transparent text-blackColor2 w-full p-13px pr-30px focus:outline-none block appearance-none relative z-20 focus:shadow-select rounded-md">
-                                                                        <option selected="">Select</option>
-                                                                        <option value="1">Web Design</option>
-                                                                        <option value="2">Graphic</option>
-                                                                        <option value="3">English</option>
-                                                                        <option value="4">
-                                                                            Spoken English
-                                                                        </option>
-                                                                        <option value="5">Art Painting</option>
-                                                                        <option value="6">
-                                                                            App Development
-                                                                        </option>
-                                                                        <option value="7">
-                                                                            Web Application
-                                                                        </option>
-                                                                        <option value="7">
-                                                                            Php Development
-                                                                        </option>
-                                                                    </select>
-                                                                    <i
-                                                                        class="icofont-simple-down absolute top-1/2 right-3 -translate-y-1/2 block text-lg z-10"></i>
-                                                                </div>
+                                                                <label class="text-xs uppercase text-placeholder font-semibold text-opacity-50 leading-1.8 block">Tags</label>
+                                                                <select name="idTag[]" multiple class="hide-scroll p-1 w-full leading-52px bg-transparent text-sm focus:outline-none focus:shadow-select text-contentColor appearance-none border border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 rounded-md">
+                                                                    <?php if(isset($allTags)) { ?>
+                                                                        <?php foreach($allTags as $tag) { ?>
+                                                                            <option class="p-9px rounded" value="<?php echo $tag['id'] ?>"><?php echo $tag['nameTag'] ?></option>
+                                                                        <?php } ?>
+                                                                    <?php } ?>
+                                                                </select>
                                                             </div>
                                                         </div>
                                                         <div>
@@ -252,28 +220,19 @@
                                         class="accordion-content transition-all duration-500 overflow-hidden h-0">
                                         <div class="content-wrapper py-4 px-5">
                                             <div class="p-10px md:p-10 lg:p-5 2xl:p-10 bg-darkdeep3 dark:bg-transparent text-sm text-blackColor dark:text-blackColor-dark leading-1.8">
-                                                <!-- <form
-                                                    class="p-10px md:p-10 lg:p-5 2xl:p-10 bg-darkdeep3 dark:bg-transparent text-sm text-blackColor dark:text-blackColor-dark leading-1.8"
-                                                    data-aos="fade-up"> -->
-                                                    <div class="grid grid-cols-1 mb-15px gap-15px">
-                                                        <div>
-                                                            <label class="mb-3 block font-semibold">Add Your Video URL</label>
-                                                            <input
-                                                                name="videos[]"
-                                                                type="file"
-                                                                placeholder="Select Video searche"
-                                                                class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no">
-                                                        </div>
-                                                        <div>
-                                                            <div class="mb-3 block">
-                                                                Example:
-                                                                <a
-                                                                    class="hover:text-primaryColor"
-                                                                    href="#">https://www.youtube.com/watch?v=yourvideoid</a>
-                                                            </div>
-                                                        </div>
+                                                <div class="grid grid-cols-1 mb-15px gap-15px">
+                                                    <div>
+                                                        <label class="mb-3 block font-semibold">Add Your Video URL</label>
+                                                        <input
+                                                            name="videos[]"
+                                                            multiple
+                                                            type="file"
+                                                            class="upload-video w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no">
                                                     </div>
-                                                <!-- </form> -->
+                                                    <div class="link-videos">
+                                                        
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>

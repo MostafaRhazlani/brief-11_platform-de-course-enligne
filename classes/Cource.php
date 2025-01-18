@@ -114,6 +114,12 @@
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
 
+        public function lastCourseAdded() {
+
+            $result = $this->conn->query("SELECT id FROM courses ORDER BY id DESC LIMIT 1");
+            return $result->fetchColumn();
+        }
+
         public function getCoursesByStatus() {
 
             $sql = "SELECT courses.*, nameCategory, firstName, lastName, imageProfile

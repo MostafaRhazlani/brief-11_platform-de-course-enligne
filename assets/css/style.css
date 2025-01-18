@@ -3606,6 +3606,10 @@ video {
   padding: 0.25rem;
 }
 
+.p-9px{
+  padding: .500rem;
+}
+
 .p-10{
   padding: 2.5rem;
 }
@@ -9179,7 +9183,6 @@ video {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  box-shadow: 0 8px 6px -6px black;
 }
 
 .file-uploader {
@@ -9197,4 +9200,8 @@ video {
 
 .object-cover {
   object-fit: cover;
+}
+
+.hide-scroll::-webkit-scrollbar {
+  display: none;
 }
