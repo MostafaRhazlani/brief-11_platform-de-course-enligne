@@ -96,6 +96,12 @@
             $stmt = $this->conn->query($sql);
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
+
+        public function totalVideo() {
+            $sql = "SELECT count(*) FROM videos WHERE idCourse = $this->idCourse";
+            $stmt = $this->conn->query($sql);
+            return $stmt->fetchColumn();
+        }
         
     }
 
