@@ -10,10 +10,12 @@
         private $idCategory;
         private $image;
         private $payStatus;
+        private $size;
+        private $offset;
         private $conn;
         private $errors;
 
-        public function __construct($conn, $id = 0, $title = "", $titleDescription = "", $description = "", $price = "", $statusCourse = "", $idTeacher = "", $idCategory = "", $image = "", $payStatus = "") {
+        public function __construct($conn, $id = 0, $title = "", $titleDescription = "", $description = "", $price = "", $statusCourse = "", $idTeacher = "", $idCategory = "", $image = "", $payStatus = "", $size = 9, $offset = 0) {
             $this->conn = $conn;
             $this->id = $id;
             $this->title = $title;
@@ -25,6 +27,8 @@
             $this->idCategory = $idCategory;
             $this->image = $image;
             $this->payStatus = $payStatus;
+            $this->size = $size;
+            $this->offset = $offset;
         }
 
         public function getId() {
@@ -67,6 +71,14 @@
             return $this->payStatus;
         }
 
+        public function getSize() {
+            return $this->size;
+        }
+
+        public function getOffset() {
+            return $this->offset;
+        }
+
         public function setTitle($title) {
             $this->title = $title;
         }
@@ -103,6 +115,14 @@
             $this->payStatus = $payStatus;
         }
 
+        public function setSize($size) {
+            $this->size = $size;
+        }
+
+        public function setOffset($offset) {
+            $this->offset = $offset;
+        }
+
         public function getCourses() {
 
             $sql = "SELECT courses.*, nameCategory, firstName, lastName, imageProfile
@@ -112,6 +132,12 @@
                     JOIN users ON users.id = courses.idTeacher";
             $stmt = $this->conn->query($sql);
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        }
+
+        public function countCourses() {
+            $sql = "SELECT count(*) as countCourses FROM courses";
+            $stmt = $this->conn->query($sql);
+            return $stmt->fetch();
         }
 
         public function getCourse() {
@@ -138,7 +164,9 @@
                     ON categories.id = courses.idCategory
                     JOIN users 
                     ON users.id = courses.idTeacher 
-                    WHERE statusCourse = '$this->statusCourse'";
+                    WHERE statusCourse = '$this->statusCourse'
+                    LIMIT $this->size
+                    OFFSET $this->offset";
             $stmt = $this->conn->query($sql);
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
         }

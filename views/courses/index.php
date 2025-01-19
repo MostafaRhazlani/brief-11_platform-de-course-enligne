@@ -8,8 +8,22 @@
 
     $courses = new Course($conn);
 
+    $page = isset($_GET['page']) ? $_GET['page'] : 1;
+    $offset = ($page - 1) * $courses->getSize();
+
     $courses->setStatusCourse(1);
+    $courses->setOffset($offset);
     $resultCourses = $courses->getCoursesByStatus();
+
+    $countCourses = $courses->countCourses();
+    $numCourses = $countCourses['countCourses'];
+
+    if($numCourses % 2 === 0) {
+        $numberPage = $numCourses / $courses->getSize();
+    } else {
+        $numberPage = floor($numCourses / $courses->getSize()) + 1;
+    }
+    
 
 ?>
 
@@ -375,36 +389,48 @@
                             </div>
                         </div>
                         <!-- pagination -->
-                        <div>
-                            <ul
-                                class="flex items-center justify-center gap-15px mt-60px mb-30px">
-                                <li>
-                                    <a
-                                        href="#"
-                                        class="w-10 h-10 leading-10 md:w-50px md:h-50px md:leading-50px text-center text-blackColor2 hover:text-whiteColor bg-whitegrey1 hover:bg-primaryColor dark:text-blackColor2-dark dark:hover:text-whiteColor dark:bg-whitegrey1-dark dark:hover:bg-primaryColor cursor-not-allowed"><i class="icofont-double-left"></i></a>
-                                </li>
-                                <li>
-                                    <a
-                                        href="#"
-                                        class="w-10 h-10 leading-10 md:w-50px md:h-50px md:leading-50px text-center text-whiteColor hover:text-whiteColor bg-primaryColor hover:bg-primaryColor dark:text-blackColor2-dark dark:hover:text-whiteColor dark:bg-primaryColor dark:hover:bg-primaryColor">1</a>
-                                </li>
-                                <li>
-                                    <a
-                                        href="#"
-                                        class="w-10 h-10 leading-10 md:w-50px md:h-50px md:leading-50px text-center text-blackColor2 hover:text-whiteColor bg-whitegrey1 hover:bg-primaryColor dark:text-blackColor2-dark dark:hover:text-whiteColor dark:bg-whitegrey1-dark dark:hover:bg-primaryColor">2</a>
-                                </li>
-                                <li>
-                                    <a
-                                        href="#"
-                                        class="w-10 h-10 leading-10 md:w-50px md:h-50px md:leading-50px text-center text-blackColor2 hover:text-whiteColor bg-whitegrey1 hover:bg-primaryColor dark:text-blackColor2-dark dark:hover:text-whiteColor dark:bg-whitegrey1-dark dark:hover:bg-primaryColor">3</a>
-                                </li>
-                                <li>
-                                    <a
-                                        href="#"
-                                        class="w-10 h-10 leading-10 md:w-50px md:h-50px md:leading-50px text-center text-blackColor2 hover:text-whiteColor bg-whitegrey1 hover:bg-primaryColor dark:text-blackColor2-dark dark:hover:text-whiteColor dark:bg-whitegrey1-dark dark:hover:bg-primaryColor"><i class="icofont-double-right"></i></a>
-                                </li>
-                            </ul>
-                        </div>
+                         <?php if($numberPage > 1) { ?>
+                            <div>
+                                <ul
+                                    class="flex items-center justify-center gap-15px mt-60px mb-30px">
+                                    <?php if($page != 1) { ?>
+                                        <li>
+                                            <a
+                                                href="./index.php?page=<?php echo $page - 1; ?>"
+                                                class="w-10 h-10 leading-10 md:w-50px md:h-50px md:leading-50px text-center text-blackColor2 hover:text-whiteColor bg-whitegrey1 hover:bg-primaryColor dark:text-blackColor2-dark dark:hover:text-whiteColor dark:bg-whitegrey1-dark dark:hover:bg-primaryColor cursor-pointer"><i class="icofont-double-left"></i></a>
+                                        </li>
+                                    <?php } else { ?>
+                                        <li>
+                                            <a
+                                                href="#"
+                                                class="w-10 h-10 leading-10 md:w-50px md:h-50px md:leading-50px text-center text-blackColor2 hover:text-whiteColor bg-whitegrey1 hover:bg-primaryColor dark:text-blackColor2-dark dark:hover:text-whiteColor dark:bg-whitegrey1-dark dark:hover:bg-primaryColor cursor-not-allowed"><i class="icofont-double-left"></i></a>
+                                        </li>
+                                    <?php } ?>
+                                    <?php for ($i = 1; $i <= $numberPage; $i++) { ?>
+                                        <li>
+                                            <a
+                                                href="./index.php?page=<?php echo $i; ?>"
+                                                class="w-10 h-10 leading-10 md:w-50px md:h-50px md:leading-50px text-center <?php echo ($page == $i) ? 'text-whiteColor bg-primaryColor dark:bg-primaryColor' : 'dark:bg-whitegrey1-dark bg-whitegrey1' ?> hover:text-whiteColor hover:bg-primaryColor dark:text-blackColor2-dark dark:hover:text-whiteColor dark:hover:bg-primaryColor"><?php echo $i ?>
+                                            </a>
+                                        </li>
+                                    <?php } ?>
+                                    
+                                    <?php if($page < $numberPage) { ?>
+                                        <li>
+                                            <a
+                                                href="./index.php?page=<?php echo $page + 1; ?>"
+                                                class="w-10 h-10 leading-10 md:w-50px md:h-50px md:leading-50px text-center text-blackColor2 hover:text-whiteColor bg-whitegrey1 hover:bg-primaryColor dark:text-blackColor2-dark dark:hover:text-whiteColor dark:bg-whitegrey1-dark dark:hover:bg-primaryColor cursor-pointer"><i class="icofont-double-right"></i></a>
+                                        </li>
+                                    <?php } else { ?>
+                                        <li>
+                                            <a
+                                                href="#"
+                                                class="w-10 h-10 leading-10 md:w-50px md:h-50px md:leading-50px text-center text-blackColor2 hover:text-whiteColor bg-whitegrey1 hover:bg-primaryColor dark:text-blackColor2-dark dark:hover:text-whiteColor dark:bg-whitegrey1-dark dark:hover:bg-primaryColor cursor-not-allowed"><i class="icofont-double-right"></i></a>
+                                        </li>
+                                    <?php } ?>
+                                </ul>
+                            </div>
+                        <?php } ?>
                     </div>
                 </div>
             </div>
