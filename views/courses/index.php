@@ -1,6 +1,7 @@
 <?php
     require_once __DIR__ . '/../../classes/Database.php';
     require_once __DIR__ . '/../../classes/Cource.php';
+    require_once __DIR__ . '/../../classes/Video.php';
 
     $db = new Database();
     $conn = $db->connect();
@@ -203,8 +204,13 @@
                                                                         class="icofont-book-alt pr-5px text-primaryColor text-lg"></i>
                                                                 </div>
                                                                 <div>
+                                                                    <?php 
+                                                                        $videos = new Video($conn);
+                                                                        $videos->setIdCourse($course['id']);
+                                                                        $totalVideos = $videos->totalVideo();
+                                                                    ?>
                                                                     <span
-                                                                        class="text-sm text-black dark:text-blackColor-dark">29 Lesson</span>
+                                                                        class="text-sm text-black dark:text-blackColor-dark"><?php echo $totalVideos ?> Lesson</span>
                                                                 </div>
                                                             </div>
                                                             <div class="flex items-center">
