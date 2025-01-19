@@ -1,13 +1,14 @@
 <?php
+    session_start();
     require_once __DIR__ . '/../../../classes/Database.php';
-    require_once __DIR__ . '/../../../classes/User.php';
+    require_once __DIR__ . '/../../../classes/Teacher.php';
 
     $db = new Database();
     $conn = $db->connect();
 
-    $users = new User($conn);
-    $users->setRole('student');
-    $resultUsers = $users->getUsers();
+    $idTeacher = $_SESSION['user']['id'];
+    $teacher = new Teacher($conn, $idTeacher);
+    $allStudents = $teacher->getStudentsTeacher();
 
 ?>
 
@@ -70,8 +71,8 @@
                                 <div class="transition-all duration-300">
                                     <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-30px">
 
-                                        <?php if(isset($resultUsers)) { ?>
-                                            <?php foreach($resultUsers as $user) { ?>
+                                        <?php if(isset($allStudents)) { ?>
+                                            <?php foreach($allStudents as $student) { ?>
                                                 <!-- card -->
                                                 <div class="group">
                                                     <div class="tab-content-wrapper">
@@ -83,7 +84,7 @@
                                                                     href="#"
                                                                     class="w-full overflow-hidden rounded flex justify-center">
                                                                     <img
-                                                                        src="../../../assets/images/<?php echo $user['imageProfile'] ?>"
+                                                                        src="../../../assets/images/<?php echo $student['imageProfile'] ?>"
                                                                         alt=""
                                                                         class="w-90px h-90px rounded-full">
                                                                 </a>
@@ -94,9 +95,9 @@
                                                                     <a
                                                                         href="#"
                                                                         class="text-xl font-semibold text-blackColor font-hind dark:text-blackColor-dark hover:text-primaryColor dark:hover:text-primaryColor">
-                                                                        <?php echo "{$user['firstName']} " . "{$user['lastName']}" ?>
+                                                                        <?php echo "{$student['firstName']} " . "{$student['lastName']}" ?>
                                                                     </a>
-                                                                    <span class="text-sm dark:text-blackColor-dark"><?php echo $user['username'] ?></span>
+                                                                    <span class="text-sm dark:text-blackColor-dark"><?php echo $student['username'] ?></span>
                                                                 </div>
                                                             </div>
                                                         </div>
