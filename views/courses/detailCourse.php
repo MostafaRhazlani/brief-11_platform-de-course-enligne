@@ -1,13 +1,16 @@
 <?php
+session_start();
     require_once __DIR__ . '/../../classes/Database.php';
     require_once __DIR__ . '/../../classes/Cource.php';
     require_once __DIR__ . '/../../classes/Tags_Courses.php';
+    require_once __DIR__ . '/../../classes/Student_Course.php';
     require_once __DIR__ . '/../../classes/Video.php';
 
     $db = new Database();
     $conn = $db->connect();
     if(isset($_GET['idCourse'])) {
         $idCourse = $_GET['idCourse'];
+        $idStudent = $_SESSION['user']['id'];
 
         $course = new Course($conn, $idCourse);
         $resultCourse = $course->getCourse();
@@ -18,6 +21,9 @@
         $videosCourse = new Video($conn);
         $videosCourse->setIdCourse($idCourse);
         $resultVideos = $videosCourse->getVideosCourse();
+
+        $paidCourse = new Student_Course($conn, $idStudent);
+        $resultPaidCourse = $paidCourse->getPaidCourse();
     }
 
 
@@ -113,10 +119,12 @@
                             <div
                                 class="flex gap-5 flex-wrap items-center mb-30px"
                                 data-aos="fade-up">
-                                <div
-                                    class="text-size-21 font-medium text-primaryColor font-inter leading-25px">
-                                    $<?php echo $resultCourse['price'] ?>
-                                </div>
+                                <?php if($resultPaidCourse === false) { ?>
+                                    <div
+                                        class="text-size-21 font-medium text-primaryColor font-inter leading-25px">
+                                        $<?php echo $resultCourse['price'] ?>
+                                    </div>
+                                <?php } ?>
                                 <div class="flex items-center">
                                     <div>
                                         <i
@@ -299,17 +307,23 @@
                                                                             </div>
                                                                             <div
                                                                                 class="text-blackColor dark:text-blackColor-dark text-sm flex items-center">
-                                                                                <p>
-                                                                                    <i class="icofont-clock-time"></i> 22
-                                                                                    minutes
-                                                                                </p>
-                                                                                <a
-                                                                                    href="lesson.html"
-                                                                                    class="bg-primaryColor text-whiteColor text-sm ml-5 rounded py-0.5">
-                                                                                    <p class="px-10px">
-                                                                                        <i class="icofont-eye"></i> Preview
+                                                                                <?php if($resultPaidCourse === false || $video['statusVideo'] === 0) { ?>
+                                                                                    <div class="text-contentColor dark:text-contentColor-dark text-sm">
+                                                                                        <p><i class="icofont-lock"></i></p>
+                                                                                    </div>
+                                                                                <?php } else { ?>
+                                                                                    <p>
+                                                                                        <i class="icofont-clock-time"></i> 22
+                                                                                        minutes
                                                                                     </p>
-                                                                                </a>
+                                                                                    <a
+                                                                                        href="lessons.php?idCourse=<?php echo $idCourse ?>&idVideo=<?php echo $video['id'] ?>"
+                                                                                        class="bg-primaryColor text-whiteColor text-sm ml-5 rounded py-0.5">
+                                                                                        <p class="px-10px">
+                                                                                            <i class="icofont-eye"></i> Preview
+                                                                                        </p>
+                                                                                    </a>
+                                                                                <?php } ?>
                                                                             </div>
                                                                         </li>
                                                                     <?php } ?>
@@ -766,35 +780,6 @@
                                             <?php } ?>
                                         <?php } ?>
                                     </ul>
-                                </div>
-                                <div>
-                                    <!-- social -->
-                                    <div>
-                                        <ul class="flex gap-10px justify-center items-center">
-                                            <li>
-                                                <p
-                                                    class="text-lg md:text-size-22 leading-7 md:leading-30px text-blackColor dark:text-blackColor-dark font-bold">
-                                                    Share
-                                                </p>
-                                            </li>
-                                            <li>
-                                                <a
-                                                    href="#"
-                                                    class="h-35px w-35px leading-35px md:w-38px md:h-38px md:leading-38px text-size-11 md:text-xs text-center border border-borderColor2 text-contentColor hover:text-whiteColor hover:bg-primaryColor dark:text-contentColor-dark dark:hover:text-whiteColor dark:hover:bg-primaryColor dark:border-borderColor2-dark rounded"><i class="icofont-twitter"></i></a>
-                                            </li>
-                                            <li>
-                                                <a
-                                                    href="#"
-                                                    class="h-35px w-35px leading-35px md:w-38px md:h-38px md:leading-38px text-size-11 md:text-xs text-center border border-borderColor2 text-contentColor hover:text-whiteColor hover:bg-primaryColor dark:text-contentColor-dark dark:hover:text-whiteColor dark:hover:bg-primaryColor dark:border-borderColor2-dark rounded"><i class="icofont-facebook"></i></a>
-                                            </li>
-
-                                            <li>
-                                                <a
-                                                    href="#"
-                                                    class="h-35px w-35px leading-35px md:w-38px md:h-38px md:leading-38px text-size-11 md:text-xs text-center border border-borderColor2 text-contentColor hover:text-whiteColor hover:bg-primaryColor dark:text-contentColor-dark dark:hover:text-whiteColor dark:hover:bg-primaryColor dark:border-borderColor2-dark rounded"><i class="icofont-instagram"></i></a>
-                                            </li>
-                                        </ul>
-                                    </div>
                                 </div>
                             </div>
                             <!-- other courses -->
@@ -1718,34 +1703,39 @@ Enter your Massage*</textarea>
                                     </div>
                                 </div>
                             </div>
-                            <div class="flex justify-between mb-5">
-                                <div
-                                    class="text-size-21 font-bold text-primaryColor font-inter leading-25px">
-                                    $32.00
-                                    <del class="text-sm text-lightGrey4 font-semibold">/ $67.00</del>
+                            <?php if($resultPaidCourse === false) { ?>
+                                <div class="flex justify-between mb-5">
+                                    <div
+                                        class="text-size-21 font-bold text-primaryColor font-inter leading-25px">
+                                        $32.00
+                                        <del class="text-sm text-lightGrey4 font-semibold">/ $67.00</del>
+                                    </div>
+                                    <div>
+                                        <a
+                                            href="#"
+                                            class="uppercase text-sm font-semibold text-secondaryColor2 leading-27px px-2 bg-whitegrey1 dark:bg-whitegrey1-dark">68% OFF</a>
+                                    </div>
                                 </div>
-                                <div>
-                                    <a
-                                        href="#"
-                                        class="uppercase text-sm font-semibold text-secondaryColor2 leading-27px px-2 bg-whitegrey1 dark:bg-whitegrey1-dark">68% OFF</a>
-                                </div>
-                            </div>
-                            <div class="mb-5" data-aos="fade-up">
-                                <button
-                                    type="submit"
-                                    class="w-full text-size-15 text-whiteColor bg-primaryColor px-25px py-10px border mb-10px leading-1.8 border-primaryColor hover:text-primaryColor hover:bg-whiteColor inline-block rounded group dark:hover:text-whiteColor dark:hover:bg-whiteColor-dark">
-                                    Add To Cart
-                                </button>
-                                <button
-                                    type="submit"
-                                    class="w-full text-size-15 text-whiteColor bg-secondaryColor px-25px py-10px mb-10px leading-1.8 border border-secondaryColor hover:text-secondaryColor hover:bg-whiteColor inline-block rounded group dark:hover:text-secondaryColor dark:hover:bg-whiteColor-dark">
-                                    Buy Now
-                                </button>
+                                <div class="mb-5" data-aos="fade-up">
+                                    <button
+                                        type="submit"
+                                        class="w-full text-size-15 text-whiteColor bg-primaryColor px-25px py-10px border mb-10px leading-1.8 border-primaryColor hover:text-primaryColor hover:bg-whiteColor inline-block rounded group dark:hover:text-whiteColor dark:hover:bg-whiteColor-dark">
+                                        Add To Cart
+                                    </button>
+                                    <form action="./buyCourse.php" method="POST">
+                                        <input type="hidden" name="idCourse" value="<?php echo $idCourse ?>" >
+                                        <button
+                                            type="submit"
+                                            class="w-full text-size-15 text-whiteColor bg-secondaryColor px-25px py-10px mb-10px leading-1.8 border border-secondaryColor hover:text-secondaryColor hover:bg-whiteColor inline-block rounded group dark:hover:text-secondaryColor dark:hover:bg-whiteColor-dark">
+                                            Buy Now
+                                        </button>
+                                    </form>
 
-                                <span
-                                    class="text-size-13 text-contentColor dark:text-contentColor-dark leading-1.8"><i class="icofont-ui-rotation"></i> 45-Days Money-Back
-                                    Guarantee</span>
-                            </div>
+                                    <span
+                                        class="text-size-13 text-contentColor dark:text-contentColor-dark leading-1.8"><i class="icofont-ui-rotation"></i> 45-Days Money-Back
+                                        Guarantee</span>
+                                </div>
+                            <?php } ?>
                             <ul>
                                 <li
                                     class="flex items-center justify-between py-10px border-b border-borderColor dark:border-borderColor-dark">

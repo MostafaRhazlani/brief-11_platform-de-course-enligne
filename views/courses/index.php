@@ -219,7 +219,7 @@
                                                             </div>
                                                         </div>
                                                         <a
-                                                            href="../../course-details.html"
+                                                            href="./detailCourse.php?idCourse=<?php echo $course['id'] ?>"
                                                             class="text-xl font-semibold text-blackColor mb-10px font-hind dark:text-blackColor-dark hover:text-primaryColor dark:hover:text-primaryColor">
                                                             <?php echo $course['title'] ?>
                                                         </a>
@@ -244,29 +244,6 @@
                                                                     <img class="w-[30px] h-[30px] rounded-full mr-10px" src="../../../assets/images/<?php echo $course['imageProfile'] ?>" alt="">
                                                                     <?php echo "{$course['firstName']} " . "{$course['lastName']}" ?>
                                                                 </a>
-                                                            </div>
-                                                            <div>
-                                                                <?php if($_SESSION['user']['role'] === 'admin') { ?>
-                                                                    <?php if($course['statusCourse'] == 0) { ?>
-                                                                        <div>
-                                                                            <form action="./acceptCourse.php" method="POST">
-                                                                                <input type="hidden" name="idCourse" value="<?php echo $course['id'] ?>">
-                                                                                <input type="hidden" name="accept" value="1">
-                                                                                <button class="text-size-15 inline-block px-25px leading-22px font-bold text-whiteColor hover:text-greencolor bg-greencolor hover:bg-whiteColor dark:hover:bg-whiteColor-dark border border-greencolor rounded">
-                                                                                    Accept
-                                                                                </button>
-                                                                            </form>
-                                                                        </div>
-                                                                    <?php } ?>
-                                                                <?php } ?>
-                                                                <div>
-                                                                    <form action="./deleteCourse.php" method="POST">
-                                                                        <input type="hidden" name="idCourse" value="<?php echo $course['id'] ?>">
-                                                                        <button class="w-full text-size-15 inline-block px-25px leading-22px font-bold text-whiteColor hover:text-secondaryColor bg-secondaryColor hover:bg-whiteColor dark:hover:bg-whiteColor-dark border border-secondaryColor rounded">
-                                                                            Delete
-                                                                        </button>
-                                                                    </form>
-                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
