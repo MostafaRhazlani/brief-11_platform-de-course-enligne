@@ -115,7 +115,7 @@
         }
 
         public function getCourse() {
-            $sql = "SELECT courses.*, nameCategory, firstName, lastName, imageProfile
+            $sql = "SELECT courses.*, nameCategory, firstName, lastName, imageProfile, userDescription, experience, dateJoined
                     FROM courses 
                     JOIN categories ON categories.id = courses.idCategory
                     JOIN users ON users.id = courses.idTeacher
