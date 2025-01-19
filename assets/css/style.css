@@ -9170,6 +9170,13 @@ video {
   }
 }
 
+.overflow-ellipsis {
+  white-space: nowrap; 
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 11rem;
+}
+
 .profile-picture {
   opacity: 0.75;
   height: 400px;

@@ -42,6 +42,12 @@
             $this->idCourse = $idCourse;
         }
 
+        public function getVideo() {
+            $sql = "SELECT * FROM videos WHERE id = $this->id";
+            $stmt = $this->conn->query($sql);
+            return $stmt->fetch();
+        }
+
         public function insertVideo() {
             $sql = "INSERT INTO videos (nameVideo, statusVideo, idCourse) VALUES(?,?,?)";
             
