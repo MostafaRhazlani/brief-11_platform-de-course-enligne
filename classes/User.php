@@ -3,6 +3,7 @@ if(!isset($_SESSION)) {
     session_start();
 }
     class User {
+        protected $id;
         protected $username;
         protected $firstName;
         protected $lastName;
@@ -11,11 +12,12 @@ if(!isset($_SESSION)) {
         protected $role;
         protected $status;
         protected $image;
-        private $conn;
+        protected $conn;
         private $errors;
 
-        public function __construct($conn, $username = "", $firstName = "", $lastName = "", $email = "", $password = "", $role = "", $status = "", $errors = [])
+        public function __construct($conn, $id = 0, $username = "", $firstName = "", $lastName = "", $email = "", $password = "", $role = "", $status = "", $errors = [])
         {
+            $this->id = $id;
             $this->username = $username;
             $this->firstName = $firstName;
             $this->lastName = $lastName;
@@ -25,6 +27,10 @@ if(!isset($_SESSION)) {
             $this->status = $status;
             $this->conn = $conn;
             $this->errors = $errors;
+        }
+
+        public function getId() {
+            return $this->id;
         }
 
         public function getUsername() {
